@@ -32,35 +32,37 @@ function ModalWithForm(props) {
               <p className="modalWithForm__input-title">
                 Select the weather type:
               </p>
-              <label>
+              <label className="modalWithForm__radio-label">
                 <input
                   type="radio"
                   className="modalWithForm__radio-input"
                   value="option1"
-                  checked={false}
+                  //checked={false}
                 />
                 Hot
               </label>
-              <label>
+              <label className="modalWithForm__radio-label">
                 <input
                   type="radio"
                   className="modalWithForm__radio-input"
                   value="option1"
-                  checked={false}
+                  //checked={false}
                 />
                 Warm
               </label>
-              <label>
+              <label className="modalWithForm__radio-label">
                 <input
                   type="radio"
                   className="modalWithForm__radio-input"
                   value="option1"
-                  checked={false}
+                  //checked={false}
                 />
                 Cold
               </label>
             </div>
-            <button className="modalWithForm__submit-button">Submit</button>
+            <button className="modalWithForm__submit-button">
+              Add garment
+            </button>
           </fieldset>
         </form>
       </div>
