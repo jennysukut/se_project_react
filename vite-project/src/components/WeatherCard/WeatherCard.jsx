@@ -15,7 +15,7 @@ function WeatherCard(props) {
         alt="Current Weather"
         className="weatherCard__image"
       />
-      <p className="weatherCard__text">100</p>
+      <p className="weatherCard__text">100° F</p>
     </div>
   );
 }

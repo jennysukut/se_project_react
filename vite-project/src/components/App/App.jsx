@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Header />
         <Main />
         <Footer />
+        <ModalWithForm />
       </div>
     </div>
   );

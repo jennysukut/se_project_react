@@ -11,12 +11,16 @@
   list-style-type: none;
   padding: 0;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .itemCard__card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 325px;
+  height: 328px;
+  background-color: rgba(233, 233, 233, 1);
 }
 
 .itemCard__title {
@@ -25,6 +29,8 @@
   padding: 4px 12px;
   border-radius: 10%;
   margin-top: 15px;
+  font-family: "Cabinet Grotesk Medium";
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .itemCard__card-image {

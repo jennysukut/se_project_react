@@ -10,6 +10,7 @@
 
 .page {
   background-color: rgba(243, 243, 243, 1);
+  height: 100vh;
 }
 
 .page__content {
