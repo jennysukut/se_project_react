@@ -1,0 +1,33 @@
+.itemCard {
+}
+
+.itemCard__text {
+  font-size: 20px;
+  margin-bottom: 34px;
+}
+
+.itemCard__list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  gap: 20px;
+}
+
+.itemCard__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.itemCard__title {
+  background-color: rgba(255, 255, 255, 1);
+  position: absolute;
+  padding: 4px 12px;
+  border-radius: 10%;
+  margin-top: 15px;
+}
+
+.itemCard__card-image {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}

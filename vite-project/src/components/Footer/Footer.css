@@ -1,0 +1,7 @@
+.footer {
+  font-size: 16px;
+  font-family: "Cabinet Grotesk Medium";
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}

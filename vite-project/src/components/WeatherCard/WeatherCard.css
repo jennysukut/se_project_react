@@ -1,0 +1,11 @@
+.weatherCard {
+  display: flex;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 40px;
+}
+
+.weatherCard__text {
+  position: absolute;
+  font-size: 36px;
+  margin: 20px 16px;
+}
