@@ -4,24 +4,62 @@ function ModalWithForm(props) {
   return (
     <div className="modalWithForm">
       <div className="modalWithForm__container">
-        <button className="modalWithForm__close-button">Close</button>
-        <p className="modalWithForm__title">Put the Props Title Here</p>
+        <div className="modalWithForm__title-and-close">
+          <button className="modalWithForm__close-button"></button>
+          <p className="modalWithForm__title">Put the Props Title Here</p>
+        </div>
         <form action="" className="modalWithForm__form">
           <fieldset className="modalWithForm__fieldset">
+            <p className="modalWithForm__input-title">Name</p>
             <input
               type="text"
               className="modalWithForm__input"
-              placeholder="input text here"
+              placeholder="name"
             />
             <span className="modalWithForm__error"></span>
+          </fieldset>
+          <fieldset className="modalWithForm__fieldset">
+            <p className="modalWithForm__input-title">Image</p>
             <input
               type="url"
               className="modalWithForm__input"
-              placeholder="url here"
+              placeholder="image url"
             />
             <span className="modalWithForm__error"></span>
-            <input type="radio" className="modalWithForm__input" />
-            <span className="modalWithForm__error"></span>
+          </fieldset>
+          <fieldset className="modalWithForm__fieldset">
+            <div className="modalWithForm__radioButtons">
+              <p className="modalWithForm__input-title">
+                Select the weather type:
+              </p>
+              <label>
+                <input
+                  type="radio"
+                  className="modalWithForm__radio-input"
+                  value="option1"
+                  checked={false}
+                />
+                Hot
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  className="modalWithForm__radio-input"
+                  value="option1"
+                  checked={false}
+                />
+                Warm
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  className="modalWithForm__radio-input"
+                  value="option1"
+                  checked={false}
+                />
+                Cold
+              </label>
+            </div>
             <button className="modalWithForm__submit-button">Submit</button>
           </fieldset>
         </form>
@@ -29,46 +67,5 @@ function ModalWithForm(props) {
     </div>
   );
 }
-
-<div class="modal" id="add-card-modal">
-  <div class="modal__container">
-    <button
-      class="modal__close-button"
-      id="add-card-modal-close-button"
-    ></button>
-    <p class="modal__heading">New place</p>
-    <form class="modal__form" name="add-card-form" id="add-card-form">
-      <fieldset class="modal__form-fieldset">
-        <input
-          type="text"
-          class="modal__form-input"
-          id="add-card-modal-title"
-          name="title"
-          placeholder="Title"
-          minlength="1"
-          maxlength="30"
-          required
-        />
-        <span class="modal__error" id="add-card-modal-title-error"></span>
-        <input
-          type="url"
-          class="modal__form-input"
-          id="add-card-modal-link"
-          name="link"
-          placeholder="Image link"
-          required
-        />
-        <span class="modal__error" id="add-card-modal-link-error"></span>
-        <button
-          class="modal__button modal__button_disabled"
-          id="add-card-modal-button"
-          disabled
-        >
-          Create
-        </button>
-      </fieldset>
-    </form>
-  </div>
-</div>;
 
 export default ModalWithForm;
