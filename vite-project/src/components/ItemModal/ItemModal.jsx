@@ -1,27 +1,7 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, card, closeActiveModal }) {
-  if (card.name == "Coat") {
-    //put code here for finding the version choice
-    return (
-      <div
-        className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}
-      >
-        <div className="itemModal__container">
-          <button
-            type="button"
-            className="itemModal__close-button"
-            onClick={closeActiveModal}
-          ></button>
-          <img src={card.link} alt={card.name} className="itemModal__image" />
-          <div className="itemModal__details">
-            <p className="itemModal__title">{card.name}</p>
-            <p className="itemModal__weather">Weather: {card.weather}</p>
-          </div>
-        </div>
-      </div>
-    );
-  } else {
+function ItemModal({ activeModal, card, closeActiveModal, popupVersion }) {
+  if (popupVersion == "2") {
     return (
       <div
         className={`modal itemModal__v-2 ${
@@ -44,6 +24,25 @@ function ItemModal({ activeModal, card, closeActiveModal }) {
               />
             </div>
             <p className="itemModal__weather-v-2">Weather: {card.weather}</p>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}
+      >
+        <div className="itemModal__container">
+          <button
+            type="button"
+            className="itemModal__close-button"
+            onClick={closeActiveModal}
+          ></button>
+          <img src={card.link} alt={card.name} className="itemModal__image" />
+          <div className="itemModal__details">
+            <p className="itemModal__title">{card.name}</p>
+            <p className="itemModal__weather">Weather: {card.weather}</p>
           </div>
         </div>
       </div>

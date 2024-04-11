@@ -5,10 +5,10 @@ import { defaultClothingItems } from "../../utils/constants";
 function Main({ weatherData, handleCardClick }) {
   return (
     <main className="main">
-      <WeatherCard />
+      <WeatherCard weatherData={weatherData} />
       <p className="itemCard__text">
-        Today is 100° F / You may want to wear nothing, but here are some
-        options:
+        Today is {weatherData.temp.F}° F / You may want to wear nothing, but
+        here are some options:
       </p>
       <ul className="itemCard__list">
         {defaultClothingItems
