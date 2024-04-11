@@ -7,12 +7,18 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-function Header() {
+function Header({ handleAddClick }) {
   return (
     <header className="header">
       <img src={logo} alt="WTWR Logo" className="header__logo" />
       <p className="header__date-and-location">{currentDate}, Montenegro</p>
-      <button className="header__add-clothes-button"> + Add Clothes</button>
+      <button
+        type="button"
+        className="header__add-clothes-button"
+        onClick={handleAddClick}
+      >
+        + Add Clothes
+      </button>
       <div className="header__user-container">
         <p className="header__user-name">Terrence Tegegne</p>
         <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />

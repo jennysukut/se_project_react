@@ -1,69 +1,30 @@
 import "./ModalWithForm.css";
 
-function ModalWithForm(props) {
+function ModalWithForm({
+  children,
+  buttonText,
+  title,
+  activeModal,
+  closeActiveModal,
+}) {
   return (
-    <div className="modalWithForm">
-      <div className="modalWithForm__container">
-        <div className="modalWithForm__title-and-close">
-          <button className="modalWithForm__close-button"></button>
-          <p className="modalWithForm__title">Put the Props Title Here</p>
+    <div
+      className={`modal  ${
+        activeModal === "add-garment" ? "modal_opened" : ""
+      }`}
+    >
+      <div className="modal__container">
+        <div className="modal__title-and-close">
+          <button
+            type="button"
+            className="modal__close-button"
+            onClick={closeActiveModal}
+          ></button>
+          <p className="modal__title">{title}</p>
         </div>
-        <form action="" className="modalWithForm__form">
-          <fieldset className="modalWithForm__fieldset">
-            <p className="modalWithForm__input-title">Name</p>
-            <input
-              type="text"
-              className="modalWithForm__input"
-              placeholder="name"
-            />
-            <span className="modalWithForm__error"></span>
-          </fieldset>
-          <fieldset className="modalWithForm__fieldset">
-            <p className="modalWithForm__input-title">Image</p>
-            <input
-              type="url"
-              className="modalWithForm__input"
-              placeholder="image url"
-            />
-            <span className="modalWithForm__error"></span>
-          </fieldset>
-          <fieldset className="modalWithForm__fieldset">
-            <div className="modalWithForm__radioButtons">
-              <p className="modalWithForm__input-title">
-                Select the weather type:
-              </p>
-              <label className="modalWithForm__radio-label">
-                <input
-                  type="radio"
-                  className="modalWithForm__radio-input"
-                  value="option1"
-                  //checked={false}
-                />
-                Hot
-              </label>
-              <label className="modalWithForm__radio-label">
-                <input
-                  type="radio"
-                  className="modalWithForm__radio-input"
-                  value="option1"
-                  //checked={false}
-                />
-                Warm
-              </label>
-              <label className="modalWithForm__radio-label">
-                <input
-                  type="radio"
-                  className="modalWithForm__radio-input"
-                  value="option1"
-                  //checked={false}
-                />
-                Cold
-              </label>
-            </div>
-            <button className="modalWithForm__submit-button">
-              Add garment
-            </button>
-          </fieldset>
+        <form action="" className="modal__form">
+          {children}
+          <button className="modal__submit-button">{buttonText}</button>
         </form>
       </div>
     </div>

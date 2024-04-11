@@ -1,4 +1,4 @@
-.modalWithForm {
+.modal {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
@@ -16,12 +16,12 @@
   transition: visibility 0s, opacity 0.5s linear;
 }
 
-.modalWithForm_opened {
+.modal_opened {
   visibility: visible;
   opacity: 1;
 }
 
-.modalWithForm__container {
+.modal__container {
   background-color: rgba(255, 255, 255, 1);
   width: 496px;
   height: 436px;
@@ -30,13 +30,13 @@
   flex-direction: column;
 }
 
-.modalWithForm__title-and-close {
+.modal__title-and-close {
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
 }
 
-.modalWithForm__close-button {
+.modal__close-button {
   background: transparent url(../../images/CloseIcon.svg) center no-repeat;
   border: none;
   margin: 20px 28px 0 0;
@@ -44,14 +44,14 @@
   height: 20px;
 }
 
-.modalWithForm__title {
+.modal__title {
   margin-top: 28px;
   margin-left: 28px;
   margin-bottom: 24px;
   font-size: 16px;
 }
 
-.modalWithForm__fieldset {
+.modal__fieldset {
   border: none;
   margin: 0;
   padding: 0;
@@ -60,38 +60,39 @@
   width: 440px;
 }
 
-.modalWithForm__input-title {
+.modal__input-title {
   margin-top: 0;
   margin-bottom: 8px;
 }
 
-.modalWithForm__input {
+.modal__input {
   margin-bottom: 24px;
   width: 440px;
   border: none;
   border-bottom: solid 1px rgba(0, 0, 0, 1);
+  padding-top: 8px;
 }
 
-.modalWithForm__input::placeholder {
+.modal__input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.modalWithForm__radioButtons {
+.modal__radioButtons {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.modalWithForm__radio-input {
+.modal__radio-input {
   margin-top: 4px;
   margin-right: 11px;
 }
 
-.modalWithForm__radio-label {
+.modal__radio-label {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.modalWithForm__submit-button {
+.modal__submit-button {
   width: 124px;
   height: 36px;
   background-color: rgba(0, 0, 0, 0.3);
@@ -99,5 +100,6 @@
   border-radius: 4px;
   margin-top: 32px;
   margin-bottom: 36px;
+  margin-left: 28px;
   color: rgba(255, 255, 255, 1);
 }
