@@ -1,11 +1,28 @@
 .footer {
+  background-color: rgba(243, 243, 243, 1);
   font-size: 16px;
   font-family: "Cabinet Grotesk Medium";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .footer__container {
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 24px;
   margin-bottom: 24px;
+}
+
+.footer__copyright {
+  margin: 0;
+  margin-left: 40px;
+}
+
+.footer__copyright-year {
+  margin: 0;
+  margin-right: 42px;
 }
