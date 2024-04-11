@@ -1,0 +1,12 @@
+.itemCard__text {
+  font-size: 20px;
+  margin-bottom: 34px;
+}
+
+.itemCard__list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  gap: 19px;
+  flex-wrap: wrap;
+}
