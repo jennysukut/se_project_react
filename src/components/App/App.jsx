@@ -6,8 +6,8 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import { coordinates, APIKey } from "../../utils/constants";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { coordinates, APIKey } from "../../../utils/constants";
+import { getWeather, filterWeatherData } from "../../../utils/weatherApi";
 import { filterWeatherCardBackground } from "../WeatherCard/WeatherCard";
 
 function App() {

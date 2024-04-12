@@ -1,6 +1,6 @@
 import "./WeatherCard.css";
 import sunnyDay from "../../images/Sunny.svg";
-import { weatherCardBackground } from "../../utils/constants";
+import { weatherCardBackground } from "../../../utils/constants";
 
 function WeatherCard({ weatherData, weatherCardBackground }) {
   return (
