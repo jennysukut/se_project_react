@@ -2,7 +2,7 @@
   background-color: rgba(243, 243, 243, 1);
   font-size: 16px;
   font-family: "Cabinet Grotesk Medium";
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;

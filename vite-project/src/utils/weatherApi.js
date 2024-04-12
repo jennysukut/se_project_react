@@ -25,9 +25,9 @@ export const filterWeatherData = (data) => {
 };
 
 export const findWeatherType = (temperature) => {
-  if (temperature > 80) {
+  if (temperature > 75) {
     return "hot";
-  } else if (temperature >= 65 && temperature < 80) {
+  } else if (temperature >= 65 && temperature < 75) {
     return "warm";
   } else {
     return "cold";

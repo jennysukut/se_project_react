@@ -1,12 +1,28 @@
-.itemCard__text {
-  font-size: 20px;
-  margin-bottom: 34px;
+.main {
+  overflow: hidden;
 }
 
-.itemCard__list {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-  gap: 19px;
-  flex-wrap: wrap;
+.randomize-button {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .randomize-button {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
+    width: 343px;
+    height: 44px;
+    border-radius: 4px;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .randomize-button-icon {
+    margin-right: 8px;
+  }
 }

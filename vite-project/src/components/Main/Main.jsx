@@ -1,6 +1,8 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
+import "./Main.css";
+import randomizeButton from "../../images/RandomizeButton.svg";
 
 function Main({ weatherData, handleCardClick, weatherCardBackground }) {
   return (
@@ -10,8 +12,7 @@ function Main({ weatherData, handleCardClick, weatherCardBackground }) {
         weatherCardBackground={weatherCardBackground}
       />
       <p className="itemCard__text">
-        Today is {weatherData.temp.F}° F / You may want to wear nothing, but
-        here are some options:
+        Today is {weatherData.temp.F}° F / You may want to wear:
       </p>
       <ul className="itemCard__list">
         {defaultClothingItems
@@ -28,6 +29,14 @@ function Main({ weatherData, handleCardClick, weatherCardBackground }) {
             );
           })}
       </ul>
+      <button type="button" className="randomize-button">
+        <img
+          src={randomizeButton}
+          alt="randomize"
+          className="randomize-button-icon"
+        />
+        Randomize
+      </button>
     </main>
   );
 }

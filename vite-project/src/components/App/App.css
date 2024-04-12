@@ -10,13 +10,19 @@
 
 .page {
   background-color: rgba(243, 243, 243, 1);
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
 }
 
 .page__content {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 40px;
   font-family: "Cabinet Grotesk Bold";
+}
+
+@media screen and (max-width: 480px) {
+  .page__content {
+    padding: 18px 16px;
+  }
 }

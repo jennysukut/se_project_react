@@ -3,6 +3,14 @@
   align-items: center;
   padding: 32px 0 28px;
   font-size: 20px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.mobileHeader {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
 }
 
 .header__logo {
@@ -27,4 +35,53 @@
 
 .header__user-name {
   margin: 0;
+}
+
+@media screen and (max-width: 675px) {
+  .header {
+    justify-content: space-between;
+    font-size: 16px;
+  }
+
+  .header__user-name {
+    text-align: end;
+  }
+
+  .header__user-container {
+    width: 150px;
+  }
+
+  .header__add-clothes-button {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+  }
+
+  .mobileHeader {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+
+  .mobileHeader__logo-and-menu {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header__logo-mobile {
+    width: 89px;
+    height: 40px;
+  }
+
+  .header__date-and-location-mobile {
+    font-size: 20px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
 }

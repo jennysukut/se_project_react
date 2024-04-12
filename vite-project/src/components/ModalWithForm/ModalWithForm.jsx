@@ -24,7 +24,9 @@ function ModalWithForm({
         </div>
         <form action="" className="modal__form">
           {children}
-          <button className="modal__submit-button">{buttonText}</button>
+          <button className="modal__submit-button" disabled>
+            {buttonText}
+          </button>
         </form>
       </div>
     </div>

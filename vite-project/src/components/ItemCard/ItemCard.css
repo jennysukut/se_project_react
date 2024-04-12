@@ -7,8 +7,9 @@
   display: flex;
   list-style-type: none;
   padding: 0;
-  gap: 20px;
+  gap: 18px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .itemCard__card {
@@ -37,5 +38,17 @@
 .itemCard__card-image {
   width: 325px;
   height: 328px;
-  object-fit: contain;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 480px) {
+  .itemCard__card {
+    width: 164px;
+    height: 164px;
+  }
+
+  .itemCard__card-image {
+    width: 164px;
+    height: 164px;
+  }
 }

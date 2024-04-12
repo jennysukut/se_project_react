@@ -2,10 +2,29 @@
   display: flex;
   color: rgba(255, 255, 255, 1);
   margin-bottom: 40px;
+  max-width: 1360px;
 }
 
 .weatherCard__text {
   position: absolute;
   font-size: 36px;
   margin: 20px 16px;
+}
+
+.weatherCard__image {
+  max-width: 100%;
+  object-fit: cover;
+  object-position: top right;
+  height: 80px;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 1080px) {
+  .weatherCard__text {
+    font-size: 30px;
+    margin: 25px 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
 }
