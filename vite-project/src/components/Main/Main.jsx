@@ -2,10 +2,13 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick, weatherCardBackground }) {
   return (
     <main className="main">
-      <WeatherCard weatherData={weatherData} />
+      <WeatherCard
+        weatherData={weatherData}
+        weatherCardBackground={weatherCardBackground}
+      />
       <p className="itemCard__text">
         Today is {weatherData.temp.F}° F / You may want to wear nothing, but
         here are some options:

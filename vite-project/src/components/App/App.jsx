@@ -8,6 +8,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { coordinates, APIKey } from "../../utils/constants";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import { filterWeatherCardBackground } from "../WeatherCard/WeatherCard";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -18,6 +19,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [popupVersion, setPopupVersion] = useState("1");
+  const [weatherCardBackground, setWeatherCardBackground] = useState("");
 
   const choosePopupVersion = () => {
     setPopupVersion("2");
@@ -41,6 +43,8 @@ function App() {
       .then((data) => {
         const currentData = filterWeatherData(data);
         setWeatherData(currentData);
+        const currentBackground = filterWeatherCardBackground(currentData);
+        setWeatherCardBackground(currentBackground);
       })
       .catch((err) => {
         console.log(err);
@@ -51,7 +55,11 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Main
+          weatherData={weatherData}
+          handleCardClick={handleCardClick}
+          weatherCardBackground={weatherCardBackground}
+        />
         <Footer />
         <ModalWithForm
           activeModal={activeModal}

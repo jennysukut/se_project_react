@@ -15,15 +15,31 @@ export const filterWeatherData = (data) => {
   result.city = data.name;
   result.temp = { F: data.main.temp };
   result.type = findWeatherType(data.main.temp);
+  result.style = data.weather[0].main; //this returns "Clear"
+  result.timeOfDay = findTimeOfDay(
+    data.sys.sunrise,
+    data.sys.sunset,
+    secondsTime
+  );
   return result;
 };
 
 export const findWeatherType = (temperature) => {
-  if (temperature > 86) {
+  if (temperature > 80) {
     return "hot";
-  } else if (temperature >= 66 && temperature < 86) {
+  } else if (temperature >= 65 && temperature < 80) {
     return "warm";
   } else {
     return "cold";
+  }
+};
+
+export const secondsTime = new Date().getTime() / 1000;
+
+export const findTimeOfDay = (sunrise, sunset, secondsTime) => {
+  if (secondsTime > sunrise || secondsTime < sunset) {
+    return "day";
+  } else {
+    return "night";
   }
 };
