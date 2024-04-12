@@ -1,8 +1,12 @@
 import "./MobileMenu.css";
 
-function MobileMenuModal({ closeActiveModal, avatar, handleAddClick }) {
+function MobileMenuModal({ closeActiveModal, avatar, handleAddClick, activeModal }) {
   return (
-    <div className="mobileMenuModal">
+    <div
+      className={`mobileMenuModal ${
+        activeModal === "mobile-menu" ? "mobileMenuModal-opened " : ""
+      }`}
+    >
       <div className="mobileMenuModal__container">
         <button
           type="button"

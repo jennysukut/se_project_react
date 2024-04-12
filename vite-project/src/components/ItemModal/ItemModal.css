@@ -101,3 +101,31 @@
   margin-top: 33px;
   margin-left: 7px;
 }
+
+@media screen and (max-width: 480px) {
+  .itemModal__container {
+    width: 343px;
+    height: 465px;
+  }
+
+  .itemModal__image {
+    width: 343px;
+    height: 343px;
+    object-fit: cover;
+  }
+
+  .itemModal__close-button {
+    left: 320px;
+  }
+
+  .itemModal__details {
+    margin-left: 20px;
+  }
+
+  .itemModal__close-button {
+    background: transparent url(../../images/MobileCloseButton.svg) center
+      no-repeat;
+    width: 21px;
+    height: 21px;
+  }
+}

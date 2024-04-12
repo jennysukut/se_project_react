@@ -1,55 +1,66 @@
 .mobileMenuModal {
-  position: fixed;
-  display: flex;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 500;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  display: none;
 }
 
-.mobileMenuModal__container {
-  background-color: rgba(255, 255, 255, 1);
-  width: 343px;
-  height: 208px;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-}
+@media screen and (max-width: 480px) {
+  .mobileMenuModal-opened {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
-.mobileMenuModal__close-button {
-  background: transparent url(../../images/MobileCloseButton.svg) center
-    no-repeat;
-  border: none;
-  margin: 11px 11px 0 0;
-  width: 21px;
-  height: 21px;
-  align-self: flex-end;
-  position: absolute;
-}
+  .mobileMenuModal__container {
+    background-color: rgba(255, 255, 255, 1);
+    width: 343px;
+    height: 215px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+  }
 
-.mobileMenuModal__user-container {
-  display: flex;
-  gap: 12px;
-  margin-top: 60px;
-  justify-content: center;
-  margin-bottom: 0px;
-}
+  .mobileMenuModal__close-button {
+    background: transparent url(../../images/MobileCloseButton.svg) center
+      no-repeat;
+    border: none;
+    margin: 11px 11px 0 0;
+    width: 21px;
+    height: 21px;
+    align-self: flex-end;
+    position: absolute;
+  }
 
-.mobileMenuModal__user-name {
-  align-self: center;
-  font-size: 20px;
-}
+  .mobileMenuModal__user-container {
+    display: flex;
+    gap: 12px;
+    margin-top: 60px;
+    justify-content: center;
+    margin-bottom: 0px;
+  }
 
-.mobileMenuModal__add-clothes-button {
-  background-color: transparent;
-  align-self: center;
-  border: none;
-  margin-top: 24px;
-  font-size: 20px;
+  .mobileMenuModal__user-name {
+    align-self: center;
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+
+  .mobileMenuModal__add-clothes-button {
+    background-color: transparent;
+    align-self: center;
+    border: none;
+    margin-top: 24px;
+    font-size: 20px;
+  }
 }

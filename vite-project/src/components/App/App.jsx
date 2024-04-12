@@ -34,6 +34,10 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const handleMobileMenuClick = () => {
+    setActiveModal("mobile-menu");
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -58,13 +62,14 @@ function App() {
           handleAddClick={handleAddClick}
           weatherData={weatherData}
           closeActiveModal={closeActiveModal}
+          activeModal={activeModal}
+          handleMobileMenuClick={handleMobileMenuClick}
         />
         <Main
           weatherData={weatherData}
           handleCardClick={handleCardClick}
           weatherCardBackground={weatherCardBackground}
         />
-        <Footer />
         <ModalWithForm
           activeModal={activeModal}
           closeActiveModal={closeActiveModal}
@@ -140,6 +145,7 @@ function App() {
           popupVersion={popupVersion}
         />
       </div>
+      <Footer />
     </div>
   );
 }

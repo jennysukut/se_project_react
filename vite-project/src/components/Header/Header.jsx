@@ -9,7 +9,13 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-function Header({ handleAddClick, weatherData, closeActiveModal }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  closeActiveModal,
+  activeModal,
+  handleMobileMenuClick,
+}) {
   return (
     <>
       <header className="header">
@@ -32,11 +38,17 @@ function Header({ handleAddClick, weatherData, closeActiveModal }) {
       <header className="mobileHeader">
         <div className="mobileHeader__logo-and-menu">
           <img src={logo} alt="WTWR Logo" className="header__logo-mobile" />
-          <img
-            src={mobileMenu}
-            alt="WTWR Menu"
-            className="header__mobile-menu"
-          />
+          <button
+            type="button"
+            className="header__mobile-menu-button"
+            onClick={handleMobileMenuClick}
+          >
+            <img
+              src={mobileMenu}
+              alt="WTWR Menu"
+              className="header__mobile-menu"
+            />
+          </button>
         </div>
         <p className="header__date-and-location-mobile">
           {currentDate}, {weatherData.city}
@@ -46,6 +58,7 @@ function Header({ handleAddClick, weatherData, closeActiveModal }) {
         closeActiveModal={closeActiveModal}
         avatar={avatar}
         handleAddClick={handleAddClick}
+        activeModal={activeModal}
       />
     </>
   );

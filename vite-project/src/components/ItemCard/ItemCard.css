@@ -51,4 +51,8 @@
     width: 164px;
     height: 164px;
   }
+
+  .itemCard__list {
+    gap: 10px;
+  }
 }

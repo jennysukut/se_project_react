@@ -111,3 +111,36 @@
 .modal__submit-button:disabled {
   background: rgba(0, 0, 0, 0.3);
 }
+
+@media screen and (max-width: 480px) {
+  .modal__container {
+    width: 375px;
+    height: 455px;
+    position: fixed;
+    bottom: 0;
+    border-radius: 12px 12px 0px 0px;
+  }
+
+  .modal__close-button {
+    background: transparent url(../../images/MobileCloseButton.svg) center
+      no-repeat;
+    width: 21px;
+    height: 21px;
+  }
+
+  .modal__title {
+    font-size: 20px;
+    margin-bottom: 37px;
+  }
+
+  .modal__input-title {
+    font-size: 16px;
+  }
+
+  .modal__submit-button {
+    width: 343px;
+    height: 44px;
+    font-size: 16px;
+    margin: 36px 16px 32px;
+  }
+}

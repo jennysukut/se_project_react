@@ -74,6 +74,11 @@
     justify-content: space-between;
   }
 
+  .header__mobile-menu-button {
+    background-color: transparent;
+    border: none;
+  }
+
   .header__logo-mobile {
     width: 89px;
     height: 40px;
@@ -81,7 +86,7 @@
 
   .header__date-and-location-mobile {
     font-size: 20px;
-    margin-top: 32px;
+    margin-top: 28px;
     margin-bottom: 16px;
   }
 }
