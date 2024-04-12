@@ -15,9 +15,10 @@
 }
 
 .page__content {
+  background-color: rgba(243, 243, 243, 1);
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 40px 100px;
   font-family: "Cabinet Grotesk Bold";
 }
 

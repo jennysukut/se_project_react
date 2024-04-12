@@ -31,9 +31,9 @@
 }
 
 .itemModal__image {
-  width: 498;
-  height: 498;
-  object-fit: contain;
+  object-fit: cover;
+  width: 498px;
+  height: 498px;
 }
 
 .itemModal__details {
