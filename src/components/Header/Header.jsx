@@ -51,7 +51,7 @@ function Header({
           </button>
         </div>
         <p className="header__date-and-location-mobile">
-          {currentDate}, {weatherData.city}
+          {currentDate}, {weatherData.city}, {weatherData.timeOfDay}
         </p>
       </header>
       <MobileMenuModal

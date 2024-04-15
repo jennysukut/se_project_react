@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Cabinet Grotesk Medium";
-  src: url(../../utils/CabinetGrotesk-Medium.otf);
+  src: url(../../vendor/CabinetGrotesk-Medium.otf);
 }
 
 @font-face {
   font-family: "Cabinet Grotesk Bold";
-  src: url(../../utils/CabinetGrotesk-Bold.otf);
+  src: url(../../vendor/CabinetGrotesk-Bold.otf);
 }
 
 .page {

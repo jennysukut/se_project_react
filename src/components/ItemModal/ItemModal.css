@@ -18,6 +18,7 @@
   height: 610px;
   border-radius: 16px;
   overflow: hidden;
+  position: absolute;
 }
 
 .itemModal__close-button {
@@ -26,8 +27,8 @@
   margin: 20px 28px 0 0;
   width: 20px;
   height: 20px;
-  position: fixed;
-  right: 465px;
+  position: absolute;
+  left: 454px;
 }
 
 .itemModal__image {
@@ -114,10 +115,6 @@
     object-fit: cover;
   }
 
-  .itemModal__close-button {
-    left: 320px;
-  }
-
   .itemModal__details {
     margin-left: 20px;
   }
@@ -127,5 +124,7 @@
       no-repeat;
     width: 21px;
     height: 21px;
+    left: 309px;
+    margin-top: 12px;
   }
 }

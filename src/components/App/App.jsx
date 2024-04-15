@@ -7,8 +7,11 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { coordinates, APIKey } from "../../utils/constants";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { filterWeatherCardBackground } from "../WeatherCard/WeatherCard";
+import {
+  getWeather,
+  filterWeatherData,
+  filterWeatherCardBackground,
+} from "../../utils/weatherApi";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -17,13 +20,14 @@ function App() {
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
+  const [isOpen, setIsOpen] = useState("false");
   const [selectedCard, setSelectedCard] = useState({});
-  const [popupVersion, setPopupVersion] = useState("1");
   const [weatherCardBackground, setWeatherCardBackground] = useState("");
+  //const [popupVersion, setPopupVersion] = useState("1");
 
-  const choosePopupVersion = () => {
-    setPopupVersion("2");
-  };
+  // const choosePopupVersion = () => {
+  // setPopupVersion("2");
+  // };
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -32,7 +36,12 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+    setIsOpen("true");
   };
+
+  //const openModal = () => {
+  //  setIsOpen("true");
+  //};
 
   const handleMobileMenuClick = () => {
     setActiveModal("mobile-menu");
@@ -40,6 +49,7 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+    setIsOpen("false");
   };
 
   useEffect(() => {
@@ -73,6 +83,7 @@ function App() {
         <ModalWithForm
           activeModal={activeModal}
           closeActiveModal={closeActiveModal}
+          isOpen={isOpen}
           buttonText="Add garment"
           title="New garment"
         >
@@ -108,6 +119,7 @@ function App() {
               <label htmlFor="hot" className="modal__radio-label">
                 <input
                   type="radio"
+                  name="weather"
                   className="modal__radio-input"
                   value="option1"
                   id="hot"
@@ -118,6 +130,7 @@ function App() {
               <label htmlFor="warm" className="modal__radio-label">
                 <input
                   type="radio"
+                  name="weather"
                   className="modal__radio-input"
                   value="option1"
                   id="warm"
@@ -128,6 +141,7 @@ function App() {
               <label htmlFor="cold" className="modal__radio-label">
                 <input
                   type="radio"
+                  name="weather"
                   className="modal__radio-input"
                   value="option1"
                   id="cold"
@@ -142,7 +156,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           closeActiveModal={closeActiveModal}
-          popupVersion={popupVersion}
+          //popupVersion={popupVersion}
         />
       </div>
       <Footer />
