@@ -20,7 +20,6 @@ function App() {
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
-  const [isOpen, setIsOpen] = useState("false");
   const [selectedCard, setSelectedCard] = useState({});
   const [weatherCardBackground, setWeatherCardBackground] = useState("");
   //const [popupVersion, setPopupVersion] = useState("1");
@@ -36,12 +35,7 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
-    setIsOpen("true");
   };
-
-  //const openModal = () => {
-  //  setIsOpen("true");
-  //};
 
   const handleMobileMenuClick = () => {
     setActiveModal("mobile-menu");
@@ -49,7 +43,6 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
-    setIsOpen("false");
   };
 
   useEffect(() => {
@@ -81,9 +74,8 @@ function App() {
           weatherCardBackground={weatherCardBackground}
         />
         <ModalWithForm
-          activeModal={activeModal}
           closeActiveModal={closeActiveModal}
-          isOpen={isOpen}
+          isOpen={activeModal === "add-garment"}
           buttonText="Add garment"
           title="New garment"
         >
