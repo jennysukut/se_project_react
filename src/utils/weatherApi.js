@@ -15,7 +15,10 @@ export const getWeather = ({ coordinates }, APIkey) => {
 export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
-  result.temp = { F: data.main.temp };
+  result.temp = {
+    F: `${Math.round(data.main.temp)}°F`,
+    C: `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`,
+  };
   result.type = findWeatherType(data.main.temp);
   result.style = data.weather[0].main; //this returns "Clear"
   result.timeOfDay = findTimeOfDay(
@@ -25,6 +28,9 @@ export const filterWeatherData = (data) => {
   );
   return result;
 };
+
+// weather.temperature.F = `${Math.round(data.main.temp)}°F`;
+// weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
 
 export const findWeatherType = (temperature) => {
   if (temperature > 75) {

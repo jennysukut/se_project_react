@@ -3,8 +3,13 @@ import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
 import "./Main.css";
 import randomizeButton from "../../images/RandomizeButton.svg";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { useContext } from "react";
 
 function Main({ weatherData, handleCardClick, weatherCardBackground }) {
+  const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
+    CurrentTemperatureUnitContext
+  );
   return (
     <main className="main">
       <WeatherCard
@@ -12,7 +17,11 @@ function Main({ weatherData, handleCardClick, weatherCardBackground }) {
         weatherCardBackground={weatherCardBackground}
       />
       <p className="itemCard__text">
-        Today is {weatherData.temp.F}° F / You may want to wear:
+        Today is{" "}
+        {currentTemperatureUnit === `F`
+          ? weatherData.temp.F
+          : weatherData.temp.C}{" "}
+        / You may want to wear:
       </p>
       <ul className="itemCard__list">
         {defaultClothingItems
