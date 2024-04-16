@@ -1,12 +1,16 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
 import "./Main.css";
 import randomizeButton from "../../images/RandomizeButton.svg";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { useContext } from "react";
 
-function Main({ weatherData, handleCardClick, weatherCardBackground }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  weatherCardBackground,
+  clothingItems,
+}) {
   const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
   );
@@ -24,7 +28,7 @@ function Main({ weatherData, handleCardClick, weatherCardBackground }) {
         / You may want to wear:
       </p>
       <ul className="itemCard__list">
-        {defaultClothingItems
+        {clothingItems
           .filter((item) => {
             return item.weather === weatherData.type;
           })

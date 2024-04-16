@@ -4,6 +4,7 @@ import avatar from "../../images/Avatar.svg";
 import mobileMenu from "../../images/MobileMenuButton.svg";
 import MobileMenuModal from "../MobileMenuModal/MobileMenu";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -20,7 +21,9 @@ function Header({
   return (
     <>
       <header className="header">
-        <img src={logo} alt="WTWR Logo" className="header__logo" />
+        <Link to="/">
+          <img src={logo} alt="WTWR Logo" className="header__logo" />
+        </Link>
         <p className="header__date-and-location">
           {currentDate}, {weatherData.city}
         </p>
@@ -32,10 +35,16 @@ function Header({
         >
           + Add Clothes
         </button>
-        <div className="header__user-container">
-          <p className="header__user-name">Terrence Tegegne</p>
-          <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
-        </div>
+        <Link to="/profile" className="header__user-profile-link">
+          <div className="header__user-container">
+            <p className="header__user-name">Terrence Tegegne</p>
+            <img
+              src={avatar}
+              alt="Terrence Tegegne"
+              className="header__avatar"
+            />
+          </div>
+        </Link>
       </header>
       <header className="mobileHeader">
         <div className="mobileHeader__logo-and-menu">

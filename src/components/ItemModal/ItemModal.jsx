@@ -18,7 +18,7 @@ function ItemModal({ activeModal, card, closeActiveModal, popupVersion }) {
             <div className="itemModal__image-and-title-v-2">
               <p className="itemModal__title-v-2">{card.name}</p>
               <img
-                src={card.link}
+                src={card.imageUrl}
                 alt={card.name}
                 className="itemModal__image-v-2"
               />
@@ -37,7 +37,7 @@ function ItemModal({ activeModal, card, closeActiveModal, popupVersion }) {
           className="itemModal__close-button"
           onClick={closeActiveModal}
         ></button>
-        <img src={card.link} alt={card.name} className="itemModal__image" />
+        <img src={card.imageUrl} alt={card.name} className="itemModal__image" />
         <div className="itemModal__details">
           <p className="itemModal__title">{card.name}</p>
           <p className="itemModal__weather">Weather: {card.weather}</p>

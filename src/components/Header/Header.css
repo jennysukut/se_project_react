@@ -33,6 +33,11 @@
   gap: 12px;
 }
 
+.header__user-profile-link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+}
+
 .header__user-name {
   margin: 0;
 }
