@@ -16,7 +16,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems } from "../../utils/api";
+import { getItems, addItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -56,6 +56,7 @@ function App() {
     e.preventDefault();
     console.log(item);
     setClothingItems({ item, ...clothingItems });
+    addItem({ item });
   };
 
   const handleToggleSwitchChange = () => {
