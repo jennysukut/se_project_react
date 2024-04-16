@@ -1,6 +1,23 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, card, closeActiveModal, popupVersion }) {
+function ItemModal({
+  activeModal,
+  card,
+  closeActiveModal,
+  popupVersion,
+  handleDeletePress,
+}) {
+  const handleDeleteButton = () => {
+    console.log("delete button pressed");
+    //open the modal
+    handleDeletePress(card._id);
+    console.log(card._id); //got the ID
+    //handleDeleteItem(card._id);
+  };
+
+  const confirmDelete = () => {
+    //handleDeleteItem(card._id);
+  };
   /* if (popupVersion == "2") {
     return (
       <div
@@ -39,6 +56,13 @@ function ItemModal({ activeModal, card, closeActiveModal, popupVersion }) {
         ></button>
         <img src={card.imageUrl} alt={card.name} className="itemModal__image" />
         <div className="itemModal__details">
+          <button
+            type="button"
+            className="itemModal__deleteButton"
+            onClick={handleDeleteButton}
+          >
+            Delete item
+          </button>
           <p className="itemModal__title">{card.name}</p>
           <p className="itemModal__weather">Weather: {card.weather}</p>
         </div>

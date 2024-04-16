@@ -44,6 +44,17 @@
   margin-bottom: 32px;
 }
 
+.itemModal__deleteButton {
+  position: absolute;
+  right: 0;
+  margin-right: 32px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  font-family: "Cabinet Grotesk Medium";
+  color: rgba(255, 77, 0, 1);
+}
+
 .itemModal__title {
   margin: 0;
 }

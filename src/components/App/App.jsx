@@ -16,7 +16,8 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, addItem } from "../../utils/api";
+import { getItems, addItem, deleteItem } from "../../utils/api";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -59,6 +60,16 @@ function App() {
     addItem({ item });
   };
 
+  const handleDeletePress = () => {
+    setActiveModal("confirm");
+  };
+
+  const handleItemDelete = () => {
+    deleteItem(selectedCard._id).then((res) => {
+      console.log(res); //It works! Now to update the list of cards?
+    });
+  };
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === `C`) setCurrentTemperatureUnit(`F`);
     if (currentTemperatureUnit === `F`) setCurrentTemperatureUnit(`C`);
@@ -98,6 +109,7 @@ function App() {
             activeModal={activeModal}
             handleMobileMenuClick={handleMobileMenuClick}
           />
+
           <Routes>
             <Route
               path="/"
@@ -130,7 +142,13 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             closeActiveModal={closeActiveModal}
+            handleDeletePress={handleDeletePress}
             //popupVersion={popupVersion}
+          />
+          <ConfirmModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            handleItemDelete={handleItemDelete}
           />
         </div>
         <Footer />
