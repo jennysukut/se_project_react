@@ -3,6 +3,7 @@ import logo from "../../images/Logo.svg";
 import avatar from "../../images/Avatar.svg";
 import mobileMenu from "../../images/MobileMenuButton.svg";
 import MobileMenuModal from "../MobileMenuModal/MobileMenu";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -23,6 +24,7 @@ function Header({
         <p className="header__date-and-location">
           {currentDate}, {weatherData.city}
         </p>
+        <ToggleSwitch />
         <button
           type="button"
           className="header__add-clothes-button"

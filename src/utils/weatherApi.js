@@ -62,31 +62,34 @@ export const filterWeatherCardBackground = (currentData) => {
   ) {
     const currentBackground = weatherCardBackground.cloudy.night.cloudyNight;
     return currentBackground;
-  } else if (currentData.timeOfDay == "day" && currentData.style == "Rainy") {
+  } else if (currentData.timeOfDay == "day" && currentData.style == "Rain") {
     const currentBackground = weatherCardBackground.rainy.day.rainyDay;
     return currentBackground;
-  } else if (currentData.timeOfDay == "night" && currentData.style == "Rainy") {
+  } else if (currentData.timeOfDay == "night" && currentData.style == "Rain") {
     const currentBackground = weatherCardBackground.rainy.night.rainyNight;
     return currentBackground;
-  } else if (currentData.timeOfDay == "day" && currentData.style == "Stormy") {
+  } else if (
+    currentData.timeOfDay == "day" &&
+    currentData.style == "Thunderstorm"
+  ) {
     const currentBackground = weatherCardBackground.stormy.day.stormyDay;
     return currentBackground;
   } else if (
     currentData.timeOfDay == "night" &&
-    currentData.style == "Stormy"
+    currentData.style == "Thunderstorm"
   ) {
     const currentBackground = weatherCardBackground.stormy.night.stormyNight;
     return currentBackground;
-  } else if (currentData.timeOfDay == "day" && currentData.style == "Snowy") {
+  } else if (currentData.timeOfDay == "day" && currentData.style == "Snow") {
     const currentBackground = weatherCardBackground.snowy.day.snowyDay;
     return currentBackground;
-  } else if (currentData.timeOfDay == "night" && currentData.style == "Snowy") {
+  } else if (currentData.timeOfDay == "night" && currentData.style == "Snow") {
     const currentBackground = weatherCardBackground.snowy.night.snowyNight;
     return currentBackground;
-  } else if (currentData.timeOfDay == "day" && currentData.style == "Foggy") {
+  } else if (currentData.timeOfDay == "day" && currentData.style == "Fog") {
     const currentBackground = weatherCardBackground.foggy.day.foggyDay;
     return currentBackground;
-  } else if (currentData.timeOfDay == "night" && currentData.style == "Foggy") {
+  } else if (currentData.timeOfDay == "night" && currentData.style == "Fog") {
     const currentBackground = weatherCardBackground.foggy.night.foggyNight;
     return currentBackground;
   } else {

@@ -1,0 +1,52 @@
+.toggleSwitch {
+  margin-left: auto;
+  position: relative;
+  border-radius: 20px;
+  width: 56px;
+  height: 28px;
+  border: 2px solid rgba(126, 126, 126, 1);
+  display: flex;
+  align-items: center;
+}
+
+.toggleSwitch__choice {
+  visibility: hidden;
+}
+
+.toggleSwitch__slider {
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  position: absolute;
+  text-align: center;
+}
+
+.toggleSwitch__F {
+  left: 0;
+}
+
+.toggleSwitch__C {
+  right: 0;
+  margin-right: 0;
+}
+
+.toggleSwitch__descriptor-F {
+  position: absolute;
+  left: 10px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.toggleSwitch__descriptor-C {
+  position: absolute;
+  right: 10px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.toggleSwitch__active {
+  color: rgba(255, 255, 255, 1);
+}
