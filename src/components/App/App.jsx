@@ -13,6 +13,8 @@ import {
   filterWeatherCardBackground,
 } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { Routes, Route } from "react-router-dom";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -78,11 +80,27 @@ function App() {
             activeModal={activeModal}
             handleMobileMenuClick={handleMobileMenuClick}
           />
-          <Main
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-            weatherCardBackground={weatherCardBackground}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  weatherCardBackground={weatherCardBackground}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  handleCardClick={handleCardClick}
+                  handleAddClick={handleAddClick}
+                />
+              }
+            />
+          </Routes>
           <ModalWithForm
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "add-garment"}
