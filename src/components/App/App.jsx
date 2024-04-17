@@ -4,7 +4,6 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { coordinates, APIKey } from "../../utils/constants";
 import {
@@ -53,12 +52,10 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddItem = (e, { item }) => {
-    e.preventDefault();
-    console.log(item);
-    setClothingItems({ item, ...clothingItems });
+  const handleAddItem = ({ item }) => {
+    setClothingItems([item, ...clothingItems]);
     addItem({ item });
-    console.log(clothingItems);
+    closeActiveModal();
     getItems()
       .then((data) => {
         setClothingItems(data);
@@ -72,7 +69,6 @@ function App() {
 
   const handleItemDelete = () => {
     deleteItem(selectedCard._id).then((res) => {
-      console.log(res);
       getItems()
         .then((data) => {
           setClothingItems(data);

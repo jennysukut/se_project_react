@@ -25,3 +25,9 @@
     margin: 25px 16px;
   }
 }
+
+@media screen and (max-width: 785px) {
+  .weatherCard {
+    margin-top: 15px;
+  }
+}

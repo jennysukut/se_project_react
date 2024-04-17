@@ -51,7 +51,7 @@
   color: rgba(255, 255, 255, 1);
 }
 
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 785px) {
   .toggleSwitch {
     position: absolute;
     margin-top: 75px;

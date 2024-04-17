@@ -2,7 +2,7 @@
   background-color: rgba(243, 243, 243, 1);
   font-size: 16px;
   font-family: "Cabinet Grotesk Medium";
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
@@ -14,8 +14,9 @@
 .footer__container {
   display: flex;
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: 0;
   margin-bottom: 24px;
+  padding-top: 24px;
 }
 
 .footer__copyright {

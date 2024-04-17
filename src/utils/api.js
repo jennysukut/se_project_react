@@ -14,7 +14,6 @@ function getItems() {
 }
 
 function addItem({ item }) {
-  //there's an issue here, not sure why
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

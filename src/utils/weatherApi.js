@@ -29,9 +29,6 @@ export const filterWeatherData = (data) => {
   return result;
 };
 
-// weather.temperature.F = `${Math.round(data.main.temp)}°F`;
-// weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
-
 export const findWeatherType = (temperature) => {
   if (temperature > 75) {
     return "hot";

@@ -4,8 +4,6 @@ function ConfirmModal({ closeActiveModal, activeModal, handleItemDelete }) {
   const handleDeleteConfirmation = () => {
     handleItemDelete();
     closeActiveModal();
-    //put the call to actually delete the card by passing in the delete function to the confirm Modal!
-    console.log("deletion confirmed");
   };
 
   return (

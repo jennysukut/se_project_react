@@ -5,6 +5,7 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
+  const [checked, setChecked] = useState(null);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -21,7 +22,10 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const item = { name, imageUrl, weather };
-    handleAddItem(e, { item });
+    handleAddItem({ item });
+    setName("");
+    setImageUrl("");
+    setWeather("");
   };
 
   return (
@@ -32,7 +36,7 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
       title="New garment"
       onSubmit={handleSubmit}
     >
-      <fieldset className="modal__fieldset" onChange={handleNameChange}>
+      <fieldset className="modal__fieldset">
         <label htmlFor="name" className="modal__input-title">
           Name
           <input
@@ -40,12 +44,13 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
             className="modal__input"
             placeholder="name"
             id="name"
-            //value={name}
+            value={name}
+            onChange={handleNameChange}
           />
           <span className="modal__error"></span>
         </label>
       </fieldset>
-      <fieldset className="modal__fieldset" onChange={handleImageUrlChange}>
+      <fieldset className="modal__fieldset">
         <label htmlFor="imageUrl" className="modal__input-title">
           Image
           <input
@@ -53,6 +58,8 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
             className="modal__input"
             placeholder="image url"
             id="imageUrl"
+            value={imageUrl}
+            onChange={handleImageUrlChange}
           />
           <span className="modal__error"></span>
         </label>
@@ -70,7 +77,7 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
               value="hot"
               id="hot"
               onChange={handleWeatherChange}
-              //checked={false}
+              checked={"hot" === weather}
             />
             Hot
           </label>
@@ -82,7 +89,7 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
               value="warm"
               id="warm"
               onChange={handleWeatherChange}
-              //checked={false}
+              checked={"warm" === weather}
             />
             Warm
           </label>
@@ -94,7 +101,7 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
               value="cold"
               id="cold"
               onChange={handleWeatherChange}
-              //checked={false}
+              checked={"cold" === weather}
             />
             Cold
           </label>
