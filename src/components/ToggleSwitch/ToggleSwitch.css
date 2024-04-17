@@ -50,3 +50,18 @@
 .toggleSwitch__active {
   color: rgba(255, 255, 255, 1);
 }
+
+@media screen and (max-width: 675px) {
+  .toggleSwitch {
+    position: absolute;
+    margin-top: 75px;
+    margin-left: 7px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .toggleSwitch {
+    margin-top: 0;
+    top: 65px;
+  }
+}

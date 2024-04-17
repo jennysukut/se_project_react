@@ -63,6 +63,7 @@ function Header({
             />
           </button>
         </div>
+        <ToggleSwitch />
         <p className="header__date-and-location-mobile">
           {currentDate}, {weatherData.city}, {weatherData.timeOfDay}
         </p>
