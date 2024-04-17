@@ -1,16 +1,20 @@
 const baseUrl = "http://localhost:3001";
 
-// const checkResponse = (res) => {
-//   return res.ok ? res.json : Promise.reject(`Error: ${res.status}`);
-// };
+function checkResponse(res) {
+  if (res.ok) {
+    const data = res.json();
+    return data;
+  } else {
+    Promise.reject(`Uh oh! Error: ${res.status}`);
+  }
+}
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
 function addItem({ item }) {
+  //there's an issue here, not sure why
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -19,17 +23,13 @@ function addItem({ item }) {
       imageUrl: item.imageUrl,
       weather: item.weather,
     }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-  }).then((res) => {
-    return res.ok ? res.json : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 export { getItems, addItem, deleteItem };

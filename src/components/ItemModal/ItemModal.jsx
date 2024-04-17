@@ -8,17 +8,10 @@ function ItemModal({
   handleDeletePress,
 }) {
   const handleDeleteButton = () => {
-    console.log("delete button pressed");
-    //open the modal
     handleDeletePress(card._id);
-    console.log(card._id); //got the ID
-    //handleDeleteItem(card._id);
   };
 
-  const confirmDelete = () => {
-    //handleDeleteItem(card._id);
-  };
-  /* if (popupVersion == "2") {
+  /*if (popupVersion == "2") {
     return (
       <div
         className={`modal itemModal__v-2 ${
@@ -41,6 +34,13 @@ function ItemModal({
               />
             </div>
             <p className="itemModal__weather-v-2">Weather: {card.weather}</p>
+            <button
+              type="button"
+              className="itemModal__deleteButton-v-2"
+              onClick={handleDeleteButton}
+            >
+              Delete item
+            </button>
           </div>
         </div>
       </div>

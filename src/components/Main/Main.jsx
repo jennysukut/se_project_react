@@ -14,6 +14,7 @@ function Main({
   const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
   );
+
   return (
     <main className="main">
       <WeatherCard

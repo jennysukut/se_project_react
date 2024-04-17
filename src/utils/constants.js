@@ -39,8 +39,8 @@ export const weatherCardBackground = {
 };
 
 export const coordinates = {
-  latitude: 41.9311,
-  longitude: 19.2148,
+  latitude: 45.6793,
+  longitude: -111.042931,
 };
 
 export const APIKey = "c3c681e0ea0b927d15966a2468e02ae1";

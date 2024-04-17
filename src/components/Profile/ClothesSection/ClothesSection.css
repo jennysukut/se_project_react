@@ -24,4 +24,25 @@
   gap: 21px;
   padding-left: 0px;
   margin-top: 0px;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1010px) {
+  .clothesSection {
+    margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .clothesSection {
+    margin-left: 24px;
+  }
+
+  .clothesSection__list {
+    gap: 15px;
+  }
+
+  .clothesSection__title-and-button {
+    gap: 10px;
+  }
 }

@@ -56,3 +56,27 @@
     gap: 10px;
   }
 }
+
+@media screen and (max-width: 1010px) {
+  .itemCard__card {
+    width: 250px;
+    height: 250px;
+  }
+
+  .itemCard__card-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .itemCard__card {
+    width: 250px;
+    height: 250px;
+  }
+
+  .itemCard__card-image {
+    width: 250px;
+    height: 250px;
+  }
+}

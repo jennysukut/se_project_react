@@ -1,6 +1,12 @@
 import "./MobileMenu.css";
+import { Link } from "react-router-dom";
 
-function MobileMenuModal({ closeActiveModal, avatar, handleAddClick, activeModal }) {
+function MobileMenuModal({
+  closeActiveModal,
+  avatar,
+  handleAddClick,
+  activeModal,
+}) {
   return (
     <div
       className={`mobileMenuModal ${
@@ -13,14 +19,16 @@ function MobileMenuModal({ closeActiveModal, avatar, handleAddClick, activeModal
           className="mobileMenuModal__close-button"
           onClick={closeActiveModal}
         ></button>
-        <div className="mobileMenuModal__user-container">
-          <p className="mobileMenuModal__user-name">Terrence Tegegne</p>
-          <img
-            src={avatar}
-            alt="Terrence Tegegne"
-            className="mobileMenuModal__avatar"
-          />
-        </div>
+        <Link to="/profile" className="header__user-profile-link">
+          <div className="mobileMenuModal__user-container">
+            <p className="mobileMenuModal__user-name">Terrence Tegegne</p>
+            <img
+              src={avatar}
+              alt="Terrence Tegegne"
+              className="mobileMenuModal__avatar"
+            />
+          </div>
+        </Link>
         <button
           type="button"
           className="mobileMenuModal__add-clothes-button"

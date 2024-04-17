@@ -30,11 +30,11 @@ function App() {
   const [weatherCardBackground, setWeatherCardBackground] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState(`F`);
   const [clothingItems, setClothingItems] = useState([{}]);
-  //const [popupVersion, setPopupVersion] = useState("1");
+  //const [popupVersion, setPopupVersion] = useState("2");
 
-  // const choosePopupVersion = () => {
-  // setPopupVersion("2");
-  // };
+  //const choosePopupVersion = () => {
+  //  setPopupVersion("2");
+  //};
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -58,6 +58,12 @@ function App() {
     console.log(item);
     setClothingItems({ item, ...clothingItems });
     addItem({ item });
+    console.log(clothingItems);
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   };
 
   const handleDeletePress = () => {
@@ -66,7 +72,12 @@ function App() {
 
   const handleItemDelete = () => {
     deleteItem(selectedCard._id).then((res) => {
-      console.log(res); //It works! Now to update the list of cards?
+      console.log(res);
+      getItems()
+        .then((data) => {
+          setClothingItems(data);
+        })
+        .catch(console.error);
     });
   };
 
@@ -143,7 +154,7 @@ function App() {
             card={selectedCard}
             closeActiveModal={closeActiveModal}
             handleDeletePress={handleDeletePress}
-            //popupVersion={popupVersion}
+            // popupVersion={popupVersion}
           />
           <ConfirmModal
             activeModal={activeModal}

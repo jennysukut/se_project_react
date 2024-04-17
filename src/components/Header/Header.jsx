@@ -48,7 +48,9 @@ function Header({
       </header>
       <header className="mobileHeader">
         <div className="mobileHeader__logo-and-menu">
-          <img src={logo} alt="WTWR Logo" className="header__logo-mobile" />
+          <Link to="/">
+            <img src={logo} alt="WTWR Logo" className="header__logo-mobile" />
+          </Link>
           <button
             type="button"
             className="header__mobile-menu-button"
