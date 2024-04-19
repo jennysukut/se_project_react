@@ -1,7 +1,7 @@
-import "./Sidebar.css";
-import avatar from "../../images/Avatar.svg";
+import "./SideBar.css";
+import avatar from "../../../images/Avatar.svg";
 
-function Sidebar() {
+function SideBar() {
   return (
     <div className="sidebar__user-container">
       <img src={avatar} alt="Terrence Tegegne" className="sidebar__avatar" />
@@ -10,4 +10,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default SideBar;

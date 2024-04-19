@@ -1,12 +1,12 @@
 import "./Profile.css";
 import { useEffect } from "react";
 import ClothesSection from "./ClothesSection/ClothesSection";
-import Sidebar from "./SideBar/SideBar";
+import SideBar from "./SideBar/SideBar";
 
 function Profile({ handleCardClick, handleAddClick, clothingItems }) {
   return (
     <div className="profile">
-      <Sidebar />
+      <SideBar />
       <ClothesSection
         handleAddClick={handleAddClick}
         handleCardClick={handleCardClick}
