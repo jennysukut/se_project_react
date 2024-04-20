@@ -53,14 +53,14 @@ function App() {
   };
 
   const handleAddItem = ({ item }) => {
-    setClothingItems([item, ...clothingItems]);
-    addItem({ item });
-    closeActiveModal();
-    getItems()
-      .then((data) => {
-        setClothingItems(data);
+    addItem({ item })
+      .then((res) => {
+        setClothingItems([res, ...clothingItems]);
       })
-      .catch(console.error);
+      .then(closeActiveModal)
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleDeletePress = () => {
@@ -68,13 +68,17 @@ function App() {
   };
 
   const handleItemDelete = () => {
-    deleteItem(selectedCard._id).then((res) => {
-      getItems()
-        .then((data) => {
-          setClothingItems(data);
-        })
-        .catch(console.error);
-    });
+    deleteItem(selectedCard._id)
+      .then((data) => {
+        const updatedClothingItems = clothingItems.filter((item) => {
+          return item._id !== selectedCard._id;
+        });
+        setClothingItems(updatedClothingItems);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleToggleSwitchChange = () => {
@@ -98,9 +102,12 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        setClothingItems(data);
+        const fetchedClothingItems = data.toReversed();
+        setClothingItems(fetchedClothingItems);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -144,6 +151,7 @@ function App() {
             activeModal={activeModal}
             handleAddItem={handleAddItem}
             closeActiveModal={closeActiveModal}
+            clothingItems={clothingItems}
           />
           <ItemModal
             activeModal={activeModal}

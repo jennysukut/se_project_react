@@ -29,7 +29,7 @@ function Main({
         / You may want to wear:
       </p>
       <ul className="itemCard__list">
-        {clothingItems //this looks like it's working weird after adding a card?
+        {clothingItems
           .filter((item) => {
             return item.weather === weatherData.type;
           })

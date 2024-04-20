@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
+function AddItemModal({
+  activeModal,
+  handleAddItem,
+  closeActiveModal,
+  clothingItems,
+}) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
-  const [checked, setChecked] = useState(null);
+  // const [checked, setChecked] = useState(null);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -23,10 +28,13 @@ function AddItemModal({ activeModal, handleAddItem, closeActiveModal }) {
     e.preventDefault();
     const item = { name, imageUrl, weather };
     handleAddItem({ item });
+  };
+
+  useEffect(() => {
     setName("");
     setImageUrl("");
     setWeather("");
-  };
+  }, [clothingItems]);
 
   return (
     <ModalWithForm

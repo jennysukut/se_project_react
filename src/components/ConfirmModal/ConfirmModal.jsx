@@ -3,7 +3,6 @@ import "./ConfirmModal.css";
 function ConfirmModal({ closeActiveModal, activeModal, handleItemDelete }) {
   const handleDeleteConfirmation = () => {
     handleItemDelete();
-    closeActiveModal();
   };
 
   return (

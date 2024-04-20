@@ -1,15 +1,10 @@
 import { weatherCardBackground } from "./constants";
+import { checkResponse } from "./api";
 
 export const getWeather = ({ coordinates }, APIkey) => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${APIkey}`
-  ).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      Promise.reject(`Uh oh! Error: ${res.status}`);
-    }
-  });
+  ).then(checkResponse);
 };
 
 export const filterWeatherData = (data) => {
