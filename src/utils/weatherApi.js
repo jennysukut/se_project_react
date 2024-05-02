@@ -15,7 +15,7 @@ export const filterWeatherData = (data) => {
     C: `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`,
   };
   result.type = findWeatherType(data.main.temp);
-  result.style = data.weather[0].main; //this returns "Clear"
+  result.style = data.weather[0].main;
   result.timeOfDay = findTimeOfDay(
     data.sys.sunrise,
     data.sys.sunset,
