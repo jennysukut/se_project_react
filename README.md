@@ -6,9 +6,8 @@ The idea of the application is pretty simple - we make a call to an API, which t
 
 ## Images & Screenshots
 
-![SeProjectReactScreenshotPhone](https://github.com/jennysukut/se_project_react/assets/154376758/0e143ef4-23c6-40e2-8746-d4f215c4f8f3)
-![SeProjectReactScreenshotSmallerMonitor](https://github.com/jennysukut/se_project_react/assets/154376758/7b469421-b124-4775-bfef-b35f56d8adee)
 ![SeProjectReactScreenshotDesktop](https://github.com/jennysukut/se_project_react/assets/154376758/0ed53676-03c9-4560-9496-eb1a008ae7bf)
+![SeProjectReactScreenshotSmallerMonitor](https://github.com/jennysukut/se_project_react/assets/154376758/7b469421-b124-4775-bfef-b35f56d8adee) // ![SeProjectReactScreenshotPhone](https://github.com/jennysukut/se_project_react/assets/154376758/0e143ef4-23c6-40e2-8746-d4f215c4f8f3)
 
 ## Links
 
