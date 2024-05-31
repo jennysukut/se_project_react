@@ -36,9 +36,9 @@ function App() {
   const [clothingItems, setClothingItems] = useState([{}]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    name: "Tester",
+    name: "Jennifer Sukut",
     email: "testy@gmail.com",
-    // avatar: `https://images.unsplash.com/photo-1605184861755-8f190fea96a5?q=80&w=1883&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+    //avatar: `https://images.unsplash.com/photo-1605184861755-8f190fea96a5?q=80&w=1883&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
   }); //maybe update this to an object with the user's information to render on the profile
   const [token, setToken] = useState("");
 

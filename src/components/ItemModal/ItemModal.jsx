@@ -1,4 +1,6 @@
 import "./ItemModal.css";
+import { CurrentUserContext } from "../../contexts/AppContext";
+import { useContext } from "react";
 
 function ItemModal({
   activeModal,
@@ -10,6 +12,14 @@ function ItemModal({
   const handleDeleteButton = () => {
     handleDeletePress(card._id);
   };
+
+  const { currentUser } = useContext(CurrentUserContext);
+
+  const isOwn = card.owner === currentUser._id;
+
+  const itemDeleteButtonClassName = `item__delete-button ${
+    isOwn ? "itemModal__deleteButton" : "itemModal__deleteButton_hidden"
+  }`;
 
   /*if (popupVersion == "2") {
     return (
@@ -58,7 +68,7 @@ function ItemModal({
         <div className="itemModal__details">
           <button
             type="button"
-            className="itemModal__deleteButton"
+            className={itemDeleteButtonClassName}
             onClick={handleDeleteButton}
           >
             Delete item

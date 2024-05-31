@@ -55,6 +55,12 @@
   color: rgba(255, 77, 0, 1);
 }
 
+.itemModal__deleteButton_hidden {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}
+
 .itemModal__title {
   margin: 0;
 }
