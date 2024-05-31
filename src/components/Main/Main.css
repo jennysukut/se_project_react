@@ -8,6 +8,12 @@
   display: none;
 }
 
+.regular {
+}
+
+.bold {
+}
+
 @media screen and (max-width: 480px) {
   .randomize-button {
     display: block;

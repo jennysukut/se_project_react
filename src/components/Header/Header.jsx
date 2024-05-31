@@ -5,6 +5,8 @@ import mobileMenu from "../../images/MobileMenuButton.svg";
 import MobileMenuModal from "../MobileMenuModal/MobileMenu";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import AppContext from "../../contexts/AppContext";
+import { useContext } from "react";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -17,7 +19,11 @@ function Header({
   closeActiveModal,
   activeModal,
   handleMobileMenuClick,
+  handleSignUp,
+  handleLogIn,
 }) {
+  const { isLoggedIn } = useContext(AppContext);
+
   return (
     <>
       <header className="header">
@@ -28,23 +34,44 @@ function Header({
           {currentDate}, {weatherData.city}
         </p>
         <ToggleSwitch />
-        <button
-          type="button"
-          className="header__add-clothes-button"
-          onClick={handleAddClick}
-        >
-          + Add Clothes
-        </button>
-        <Link to="/profile" className="header__user-profile-link">
-          <div className="header__user-container">
-            <p className="header__user-name">Terrence Tegegne</p>
-            <img
-              src={avatar}
-              alt="Terrence Tegegne"
-              className="header__avatar"
-            />
-          </div>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <button
+              type="button"
+              className="header__button header__add-clothes-button"
+              onClick={handleAddClick}
+            >
+              + Add Clothes
+            </button>
+            <Link to="/profile" className="header__user-profile-link">
+              <div className="header__user-container">
+                <p className="header__user-name">Terrence Tegegne</p>
+                <img
+                  src={avatar}
+                  alt="Terrence Tegegne"
+                  className="header__avatar"
+                />
+              </div>
+            </Link>{" "}
+          </>
+        ) : (
+          <>
+            <button
+              type="button"
+              className="header__button header__sign-up-button"
+              onClick={handleSignUp}
+            >
+              Sign Up
+            </button>
+            <button
+              type="button"
+              className="header__button header__log-in-button"
+              onClick={handleLogIn}
+            >
+              Log In
+            </button>
+          </>
+        )}
       </header>
       <header className="mobileHeader">
         <div className="mobileHeader__logo-and-menu">

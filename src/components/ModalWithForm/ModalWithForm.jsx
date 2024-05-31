@@ -12,7 +12,7 @@ function ModalWithForm({
     <div
       className={`modal modal_type_${title} ${isOpen ? "modal_opened" : ""}`}
     >
-      <div className="modal__container">
+      <div className="modal__container ">
         <div className="modal__title-and-close">
           <button
             type="button"

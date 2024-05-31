@@ -21,10 +21,17 @@
   margin: 0;
 }
 
+.header__button {
+  border: none;
+}
+
 .header__add-clothes-button {
   margin-left: 20px;
   margin-right: 20px;
-  border: none;
+}
+
+.header__sign-up-button {
+  margin-left: 20px;
 }
 
 .header__user-container {

@@ -17,6 +17,9 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import AppContext from "../../contexts/AppContext";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -29,11 +32,22 @@ function App() {
   const [weatherCardBackground, setWeatherCardBackground] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState(`F`);
   const [clothingItems, setClothingItems] = useState([{}]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   //const [popupVersion, setPopupVersion] = useState("2");
 
   //const choosePopupVersion = () => {
   //  setPopupVersion("2");
   //};
+
+  const handleSignUp = () => {
+    setActiveModal("register");
+    console.log("sign up modal active");
+  };
+
+  const handleLogIn = () => {
+    setActiveModal("log-in");
+    console.log("log in modal active");
+  };
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -129,62 +143,74 @@ function App() {
 
   return (
     <div className="page">
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
-        <div className="page__content">
-          <Header
-            handleAddClick={handleAddClick}
-            weatherData={weatherData}
-            closeActiveModal={closeActiveModal}
-            activeModal={activeModal}
-            handleMobileMenuClick={handleMobileMenuClick}
-          />
+      <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <CurrentTemperatureUnitContext.Provider
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+        >
+          <div className="page__content">
+            <Header
+              handleAddClick={handleAddClick}
+              weatherData={weatherData}
+              closeActiveModal={closeActiveModal}
+              activeModal={activeModal}
+              handleMobileMenuClick={handleMobileMenuClick}
+              handleSignUp={handleSignUp}
+              handleLogIn={handleLogIn}
+            />
 
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  weatherData={weatherData}
-                  handleCardClick={handleCardClick}
-                  weatherCardBackground={weatherCardBackground}
-                  clothingItems={clothingItems}
-                />
-              }
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
+                    weatherCardBackground={weatherCardBackground}
+                    clothingItems={clothingItems}
+                  />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <Profile
+                    handleCardClick={handleCardClick}
+                    handleAddClick={handleAddClick}
+                    clothingItems={clothingItems}
+                  />
+                }
+              />
+            </Routes>
+            <AddItemModal
+              activeModal={activeModal}
+              handleAddItem={handleAddItem}
+              closeActiveModal={closeActiveModal}
+              clothingItems={clothingItems}
             />
-            <Route
-              path="/profile"
-              element={
-                <Profile
-                  handleCardClick={handleCardClick}
-                  handleAddClick={handleAddClick}
-                  clothingItems={clothingItems}
-                />
-              }
+            <ItemModal
+              activeModal={activeModal}
+              card={selectedCard}
+              closeActiveModal={closeActiveModal}
+              handleDeletePress={handleDeletePress}
+              // popupVersion={popupVersion}
             />
-          </Routes>
-          <AddItemModal
-            activeModal={activeModal}
-            handleAddItem={handleAddItem}
-            closeActiveModal={closeActiveModal}
-            clothingItems={clothingItems}
-          />
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            closeActiveModal={closeActiveModal}
-            handleDeletePress={handleDeletePress}
-            // popupVersion={popupVersion}
-          />
-          <ConfirmModal
-            activeModal={activeModal}
-            closeActiveModal={closeActiveModal}
-            handleItemDelete={handleItemDelete}
-          />
-        </div>
-        <Footer />
-      </CurrentTemperatureUnitContext.Provider>
+            <ConfirmModal
+              activeModal={activeModal}
+              closeActiveModal={closeActiveModal}
+              handleItemDelete={handleItemDelete}
+            />
+            <RegisterModal
+              activeModal={activeModal}
+              closeActiveModal={closeActiveModal}
+            />
+            <LoginModal
+              activeModal={activeModal}
+              closeActiveModal={closeActiveModal}
+            />
+          </div>
+          <Footer />
+        </CurrentTemperatureUnitContext.Provider>
+      </AppContext.Provider>
     </div>
   );
 }
