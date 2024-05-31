@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ activeModal, closeActiveModal, handleAddUser }) {
+function RegisterModal({
+  activeModal,
+  closeActiveModal,
+  handleAddUser,
+  currentUser,
+  setActiveModal,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -19,14 +25,14 @@ function RegisterModal({ activeModal, closeActiveModal, handleAddUser }) {
     setName(e.target.value);
   };
 
-  const handleAvatarUrl = (e) => {
-    setAvatarUrl(e.target.value);
+  const handleAvatar = (e) => {
+    setAvatar(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit clicked");
-    const user = { email, password, name, avatarUrl };
+    const user = { email, password, name, avatar };
     handleAddUser({ user });
     //close the modal
     //sign the user in
@@ -34,7 +40,15 @@ function RegisterModal({ activeModal, closeActiveModal, handleAddUser }) {
 
   const handleOrLogin = () => {
     console.log("handling or login button");
+    setActiveModal("log-in");
   };
+
+  useEffect(() => {
+    setEmail("");
+    setPassword("");
+    setName("");
+    setAvatar("");
+  }, [currentUser]);
 
   return (
     <ModalWithForm
@@ -97,8 +111,8 @@ function RegisterModal({ activeModal, closeActiveModal, handleAddUser }) {
             className="modal__input"
             placeholder="Avatar URL"
             id="avatarUrl"
-            value={avatarUrl}
-            onChange={handleAvatarUrl}
+            value={avatar}
+            onChange={handleAvatar}
           />
           <span className="modal__error"></span>
         </label>

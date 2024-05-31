@@ -12,7 +12,7 @@ import {
   filterWeatherCardBackground,
 } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, addItem, deleteItem } from "../../utils/api";
@@ -20,7 +20,7 @@ import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import AppContext from "../../contexts/AppContext";
 import LoginModal from "../LoginModal/LoginModal";
-import { register, signIn } from "../../utils/auth.js";
+import { register, signIn, checkToken } from "../../utils/auth.js";
 import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes.jsx";
 
 function App() {
@@ -35,12 +35,20 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState(`F`);
   const [clothingItems, setClothingItems] = useState([{}]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    email: "",
+    avatar: "",
+  }); //maybe update this to an object with the user's information to render on the profile
+  const [token, setToken] = useState("");
 
   //const [popupVersion, setPopupVersion] = useState("2");
 
   //const choosePopupVersion = () => {
   //  setPopupVersion("2");
   //};
+
+  const navigate = useNavigate();
 
   const handleSignUpClick = () => {
     setActiveModal("register");
@@ -49,7 +57,20 @@ function App() {
 
   const handleAddUser = ({ user }) => {
     console.log(`Adding this user: ${user.email} ${user.name}`);
-    register({ user });
+    register({ user })
+      .then(() => {
+        navigate("/profile");
+      })
+      .then(closeActiveModal)
+      .then(() => {
+        // setCurrentUser({
+        //   name: user.name,
+        //   email: user.email,
+        //   avatar: user.avatar,
+        // });
+        // console.log(currentUser);
+        setIsLoggedIn(true);
+      });
   };
 
   const handleLogInClick = () => {
@@ -58,8 +79,15 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
-    const user = { email, password };
-    signIn({ user });
+    console.log(email);
+    console.log(password);
+    signIn({ email, password })
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setIsLoggedIn(true);
+      })
+      .then(closeActiveModal);
+
     //check the server's response - do this in the App.js section?
     //Store the token
     //localStorage.setItem("jwt", res.token);
@@ -115,6 +143,16 @@ function App() {
     if (currentTemperatureUnit === `C`) setCurrentTemperatureUnit(`F`);
     if (currentTemperatureUnit === `F`) setCurrentTemperatureUnit(`C`);
   };
+
+  useEffect(() => {
+    if (localStorage.jwt) {
+      const token = localStorage.jwt;
+      checkToken({ token }).then(() => {
+        setToken(token);
+        setIsLoggedIn(true);
+      });
+    }
+  }, [currentUser]);
 
   useEffect(() => {
     getWeather({ coordinates }, APIKey)
@@ -221,11 +259,14 @@ function App() {
               activeModal={activeModal}
               closeActiveModal={closeActiveModal}
               handleAddUser={handleAddUser}
+              currentUser={currentUser}
+              setActiveModal={setActiveModal}
             />
             <LoginModal
               activeModal={activeModal}
               closeActiveModal={closeActiveModal}
               handleLogin={handleLogin}
+              setActiveModal={setActiveModal}
             />
           </div>
           <Footer />
