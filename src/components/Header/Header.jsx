@@ -5,7 +5,8 @@ import mobileMenu from "../../images/MobileMenuButton.svg";
 import MobileMenuModal from "../MobileMenuModal/MobileMenu";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
-import AppContext from "../../contexts/AppContext";
+import { AppContext } from "../../contexts/AppContext";
+import { CurrentUserContext } from "../../contexts/AppContext";
 import { useContext } from "react";
 
 const currentDate = new Date().toLocaleString("default", {
@@ -23,6 +24,9 @@ function Header({
   handleLogInClick,
 }) {
   const { isLoggedIn } = useContext(AppContext);
+
+  const { currentUser } = useContext(CurrentUserContext);
+  console.log(currentUser);
 
   return (
     <>
@@ -45,7 +49,7 @@ function Header({
             </button>
             <Link to="/profile" className="header__user-profile-link">
               <div className="header__user-container">
-                <p className="header__user-name">Terrence Tegegne</p>
+                <p className="header__user-name">{currentUser.name}</p>
                 <img
                   src={avatar}
                   alt="Terrence Tegegne"

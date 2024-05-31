@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
-import AppContext from "../../contexts/AppContext";
+import { AppContext } from "../../contexts/AppContext";
 function ProtectedRoute({ children, anonymous = false }) {
   // Invoke the useLocation hook and access the value of the
   // 'from' property from its state object. If there is no 'from'
