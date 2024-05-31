@@ -20,6 +20,8 @@ import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import AppContext from "../../contexts/AppContext";
 import LoginModal from "../LoginModal/LoginModal";
+import { register, signIn } from "../../utils/auth.js";
+import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -33,20 +35,34 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState(`F`);
   const [clothingItems, setClothingItems] = useState([{}]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   //const [popupVersion, setPopupVersion] = useState("2");
 
   //const choosePopupVersion = () => {
   //  setPopupVersion("2");
   //};
 
-  const handleSignUp = () => {
+  const handleSignUpClick = () => {
     setActiveModal("register");
     console.log("sign up modal active");
   };
 
-  const handleLogIn = () => {
+  const handleAddUser = ({ user }) => {
+    console.log(`Adding this user: ${user.email} ${user.name}`);
+    register({ user });
+  };
+
+  const handleLogInClick = () => {
     setActiveModal("log-in");
     console.log("log in modal active");
+  };
+
+  const handleLogin = ({ email, password }) => {
+    const user = { email, password };
+    signIn({ user });
+    //check the server's response - do this in the App.js section?
+    //Store the token
+    //localStorage.setItem("jwt", res.token);
   };
 
   const handleCardClick = (card) => {
@@ -154,8 +170,8 @@ function App() {
               closeActiveModal={closeActiveModal}
               activeModal={activeModal}
               handleMobileMenuClick={handleMobileMenuClick}
-              handleSignUp={handleSignUp}
-              handleLogIn={handleLogIn}
+              handleSignUpClick={handleSignUpClick}
+              handleLogInClick={handleLogInClick}
             />
 
             <Routes>
@@ -173,11 +189,13 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    handleCardClick={handleCardClick}
-                    handleAddClick={handleAddClick}
-                    clothingItems={clothingItems}
-                  />
+                  <ProtectedRoute>
+                    <Profile
+                      handleCardClick={handleCardClick}
+                      handleAddClick={handleAddClick}
+                      clothingItems={clothingItems}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>
@@ -202,10 +220,12 @@ function App() {
             <RegisterModal
               activeModal={activeModal}
               closeActiveModal={closeActiveModal}
+              handleAddUser={handleAddUser}
             />
             <LoginModal
               activeModal={activeModal}
               closeActiveModal={closeActiveModal}
+              handleLogin={handleLogin}
             />
           </div>
           <Footer />

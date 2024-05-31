@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal(activeModal, closeActiveModal) {
+function LoginModal({ activeModal, closeActiveModal, handleLogin }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -13,9 +12,13 @@ function LoginModal(activeModal, closeActiveModal) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("login submit clicked");
+    handleLogin({ email, password });
+    //close the modal
   };
 
-  console.log(activeModal);
+  const handleOrRegister = () => {
+    console.log("Handling or register option button");
+  };
 
   return (
     <ModalWithForm
@@ -24,6 +27,10 @@ function LoginModal(activeModal, closeActiveModal) {
       buttonText="Next"
       title="Log In"
       onSubmit={handleSubmit}
+      logIn={true}
+      altButton={true}
+      altButtonText="or Register"
+      handleAltButton={handleOrRegister}
     >
       <fieldset className="modal__fieldset">
         <label htmlFor="email" className="modal__input-title">

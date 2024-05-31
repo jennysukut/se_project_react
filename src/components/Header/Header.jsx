@@ -19,8 +19,8 @@ function Header({
   closeActiveModal,
   activeModal,
   handleMobileMenuClick,
-  handleSignUp,
-  handleLogIn,
+  handleSignUpClick,
+  handleLogInClick,
 }) {
   const { isLoggedIn } = useContext(AppContext);
 
@@ -59,14 +59,14 @@ function Header({
             <button
               type="button"
               className="header__button header__sign-up-button"
-              onClick={handleSignUp}
+              onClick={handleSignUpClick}
             >
               Sign Up
             </button>
             <button
               type="button"
               className="header__button header__log-in-button"
-              onClick={handleLogIn}
+              onClick={handleLogInClick}
             >
               Log In
             </button>

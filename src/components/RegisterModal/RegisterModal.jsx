@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal(activeModal, closeActiveModal) {
+function RegisterModal({ activeModal, closeActiveModal, handleAddUser }) {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
   };
 
   const handleName = (e) => {
@@ -21,11 +26,15 @@ function RegisterModal(activeModal, closeActiveModal) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit clicked");
-    // const item = { name, imageUrl, weather };
-    //handleAddItem({ item });
+    const user = { email, password, name, avatarUrl };
+    handleAddUser({ user });
+    //close the modal
+    //sign the user in
   };
 
-  console.log(activeModal);
+  const handleOrLogin = () => {
+    console.log("handling or login button");
+  };
 
   return (
     <ModalWithForm
@@ -34,6 +43,9 @@ function RegisterModal(activeModal, closeActiveModal) {
       buttonText="Next"
       title="Sign Up"
       onSubmit={handleSubmit}
+      altButton={true}
+      altButtonText="or Login"
+      handleAltButton={handleOrLogin}
     >
       <fieldset className="modal__fieldset">
         <label htmlFor="email" className="modal__input-title">
@@ -41,9 +53,9 @@ function RegisterModal(activeModal, closeActiveModal) {
           <input
             type="text"
             className="modal__input"
-            placeholder="email"
+            placeholder="Email"
             id="email"
-            //value={email}
+            value={email}
             onChange={handleEmail}
           />
           <span className="modal__error"></span>
@@ -55,10 +67,10 @@ function RegisterModal(activeModal, closeActiveModal) {
           <input
             type="text"
             className="modal__input"
-            placeholder="password"
+            placeholder="Password"
             id="password"
-            //value={password}
-            //onChange={handlePassword}
+            value={password}
+            onChange={handlePassword}
           />
           <span className="modal__error"></span>
         </label>
@@ -69,9 +81,9 @@ function RegisterModal(activeModal, closeActiveModal) {
           <input
             type="text"
             className="modal__input"
-            placeholder="name"
+            placeholder="Name"
             id="name"
-            //value={name}
+            value={name}
             onChange={handleName}
           />
           <span className="modal__error"></span>
@@ -83,9 +95,9 @@ function RegisterModal(activeModal, closeActiveModal) {
           <input
             type="url"
             className="modal__input"
-            placeholder="avatar url"
+            placeholder="Avatar URL"
             id="avatarUrl"
-            //value={avatarUrl}
+            value={avatarUrl}
             onChange={handleAvatarUrl}
           />
           <span className="modal__error"></span>
