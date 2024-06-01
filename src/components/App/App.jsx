@@ -15,7 +15,13 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, addItem, deleteItem } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { AppContext, CurrentUserContext } from "../../contexts/AppContext";
@@ -124,6 +130,29 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleCardLike = (id, isLiked) => {
+    console.log(id, isLiked);
+    const token = localStorage.getItem("jwt");
+
+    addCardLike(id, token);
+    // !isLiked
+    //   ? addCardLike(id, token)
+    //       .then((updatedCard) => {
+    //         setClothingItems((cards) =>
+    //           cards.map((item) => (item._id === id ? updatedCard : item))
+    //         );
+    //       })
+    //       .catch((err) => console.log(err))
+    //   : // if not, send a request to remove the user's id from the card's likes array
+    //     removeCardLike(id, token)
+    //       .then((updatedCard) => {
+    //         setClothingItems((cards) =>
+    //           cards.map((item) => (item._id === id ? updatedCard : item))
+    //         );
+    //       })
+    //       .catch((err) => console.log(err));
   };
 
   const handleMobileMenuClick = () => {
@@ -253,6 +282,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       weatherCardBackground={weatherCardBackground}
                       clothingItems={clothingItems}
+                      handleCardLike={handleCardLike}
                     />
                   }
                 />
@@ -265,6 +295,7 @@ function App() {
                         handleAddClick={handleAddClick}
                         clothingItems={clothingItems}
                         setActiveModal={setActiveModal}
+                        handleCardLike={handleCardLike}
                       />
                     </ProtectedRoute>
                   }

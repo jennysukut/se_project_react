@@ -3,7 +3,12 @@ import ItemCard from "../../ItemCard/ItemCard";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../../contexts/AppContext";
 
-function ClothesSection({ handleCardClick, handleAddClick, clothingItems }) {
+function ClothesSection({
+  handleCardClick,
+  handleAddClick,
+  clothingItems,
+  handleCardLike,
+}) {
   const { currentUser } = useContext(CurrentUserContext);
 
   //const isOwn = card.owner === currentUser._id;
@@ -28,6 +33,7 @@ function ClothesSection({ handleCardClick, handleAddClick, clothingItems }) {
                 key={item._id}
                 item={item}
                 onCardClick={handleCardClick}
+                handleCardLike={handleCardLike}
               />
             );
           }

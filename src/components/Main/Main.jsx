@@ -10,6 +10,7 @@ function Main({
   handleCardClick,
   weatherCardBackground,
   clothingItems,
+  handleCardLike,
 }) {
   const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
@@ -39,6 +40,7 @@ function Main({
                 key={item._id}
                 item={item}
                 onCardClick={handleCardClick}
+                handleCardLike={handleCardLike}
               />
             );
           })}

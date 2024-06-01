@@ -8,6 +8,7 @@ function Profile({
   handleAddClick,
   clothingItems,
   setActiveModal,
+  handleCardLike,
 }) {
   return (
     <div className="profile">
@@ -16,6 +17,7 @@ function Profile({
         handleAddClick={handleAddClick}
         handleCardClick={handleCardClick}
         clothingItems={clothingItems}
+        handleCardLike={handleCardLike}
       />
     </div>
   );

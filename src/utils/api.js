@@ -29,12 +29,30 @@ function addItem({ item, token }) {
 }
 
 function deleteItem(id, { token }) {
-  console.log(id);
-  console.log(token);
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   }).then(checkResponse);
 }
 
-export { getItems, addItem, deleteItem };
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+export { getItems, addItem, deleteItem, addCardLike, removeCardLike };
