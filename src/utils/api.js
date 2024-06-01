@@ -29,6 +29,8 @@ function addItem({ item, token }) {
 }
 
 function deleteItem(id, { token }) {
+  console.log(id);
+  console.log(token);
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },

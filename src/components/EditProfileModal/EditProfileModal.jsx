@@ -12,8 +12,8 @@ function EditProfileModal({
   const { currentUser } = useContext(CurrentUserContext);
   const { name, avatar } = currentUser;
 
-  const [newName, setNewName] = useState("");
-  const [newAvatar, setNewAvatar] = useState("");
+  const [newName, setNewName] = useState(name || "");
+  const [newAvatar, setNewAvatar] = useState(avatar || "");
 
   const handleName = (e) => {
     setNewName(e.target.value);

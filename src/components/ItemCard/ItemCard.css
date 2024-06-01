@@ -25,14 +25,39 @@
   border-radius: 20px;
 }
 
+.itemCard__title-and-like-button {
+  position: absolute;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
 .itemCard__title {
   background-color: rgba(255, 255, 255, 1);
-  position: absolute;
+  /* position: absolute; */
   padding: 4px 12px;
   border-radius: 10%;
-  margin-top: 15px;
+  /*margin-top: 15px;*/
   font-family: "Cabinet Grotesk Medium";
   color: rgba(0, 0, 0, 0.6);
+}
+
+.itemCard__like-button {
+  background: url(../../images/WtwrLikeButton.svg) no-repeat;
+  background-size: cover;
+  border: none;
+  height: 15px;
+  width: 18px;
+}
+
+.itemCard__like-button-liked {
+  background: url(../../images/WtwrLikeButtonSelected.svg);
+  background-size: cover;
+  border: none;
+  height: 15px;
+  width: 18px;
 }
 
 .itemCard__card-image {

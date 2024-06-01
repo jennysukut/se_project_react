@@ -111,36 +111,6 @@ function App() {
 
   const handleProfileChange = (newData) => {
     const token = localStorage.jwt;
-
-    // if (!newData.newAvatar && !newData.newName) {
-    //   return;
-    // }
-
-    // if (!newData.newAvatar) {
-    //   const updatedAvatar = currentUser.avatar;
-    //   const updatedName = newData.newName;
-    //   const updatedInfo = { updatedName, updatedAvatar };
-    //   return updatedInfo;
-    // }
-
-    // if (!newData.newName) {
-    //   const updatedName = currentUser.name;
-    //   const updatedAvatar = newData.newAvatar;
-    //   const updatedInfo = { updatedName, updatedAvatar };
-    //   return updatedInfo;
-    // }
-
-    // if (newData.newAvatar && newData.newName) {
-    //   const updatedName = newData.newName;
-    //   const updatedAvatar = newData.newAvatar;
-    //   const updatedInfo = { updatedName, updatedAvatar };
-    //   return updatedInfo;
-    // }
-
-    // updateProfile({ updatedInfo, token });
-    // currentUser.name = updatedInfo.updatedName;
-    // currentUser.avatar = updatedInfo.updatedAvatar;
-
     updateProfile({ newData, token });
     currentUser.name = newData.newName;
     currentUser.avatar = newData.newAvatar;
@@ -181,6 +151,7 @@ function App() {
   };
 
   const handleItemDelete = () => {
+    const token = localStorage.jwt;
     deleteItem(selectedCard._id, { token })
       .then((data) => {
         const updatedClothingItems = clothingItems.filter((item) => {
