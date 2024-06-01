@@ -6,7 +6,7 @@ import { CurrentUserContext } from "../../../contexts/AppContext";
 function ClothesSection({ handleCardClick, handleAddClick, clothingItems }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  //const isOwn = item.owner === currentUser._id;
+  //const isOwn = card.owner === currentUser._id;
 
   return (
     <div className="clothesSection">
@@ -22,16 +22,15 @@ function ClothesSection({ handleCardClick, handleAddClick, clothingItems }) {
       </div>
       <ul className="clothesSection__list">
         {clothingItems.map((item) => {
-          //console.log(item);
-          //if (item.owner === currentUser) {
-          return (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onCardClick={handleCardClick}
-            />
-          );
-          //}
+          if (item.owner === currentUser._id) {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={handleCardClick}
+              />
+            );
+          }
         })}
       </ul>
     </div>

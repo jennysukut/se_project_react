@@ -14,9 +14,6 @@ function getItems() {
 }
 
 function addItem({ item, token }) {
-  console.log("trying to add an item");
-  console.log(item);
-  console.log(token);
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {

@@ -3,10 +3,15 @@ import { useEffect } from "react";
 import ClothesSection from "./ClothesSection/ClothesSection";
 import SideBar from "./SideBar/SideBar";
 
-function Profile({ handleCardClick, handleAddClick, clothingItems }) {
+function Profile({
+  handleCardClick,
+  handleAddClick,
+  clothingItems,
+  setActiveModal,
+}) {
   return (
     <div className="profile">
-      <SideBar />
+      <SideBar setActiveModal={setActiveModal} />
       <ClothesSection
         handleAddClick={handleAddClick}
         handleCardClick={handleCardClick}

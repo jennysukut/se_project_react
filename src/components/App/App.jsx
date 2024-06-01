@@ -20,8 +20,14 @@ import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { AppContext, CurrentUserContext } from "../../contexts/AppContext";
 import LoginModal from "../LoginModal/LoginModal";
-import { register, signIn, checkToken } from "../../utils/auth.js";
+import {
+  register,
+  signIn,
+  checkToken,
+  updateProfile,
+} from "../../utils/auth.js";
 import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -101,6 +107,44 @@ function App() {
         });
       })
       .then(closeActiveModal);
+  };
+
+  const handleProfileChange = (newData) => {
+    const token = localStorage.jwt;
+
+    // if (!newData.newAvatar && !newData.newName) {
+    //   return;
+    // }
+
+    // if (!newData.newAvatar) {
+    //   const updatedAvatar = currentUser.avatar;
+    //   const updatedName = newData.newName;
+    //   const updatedInfo = { updatedName, updatedAvatar };
+    //   return updatedInfo;
+    // }
+
+    // if (!newData.newName) {
+    //   const updatedName = currentUser.name;
+    //   const updatedAvatar = newData.newAvatar;
+    //   const updatedInfo = { updatedName, updatedAvatar };
+    //   return updatedInfo;
+    // }
+
+    // if (newData.newAvatar && newData.newName) {
+    //   const updatedName = newData.newName;
+    //   const updatedAvatar = newData.newAvatar;
+    //   const updatedInfo = { updatedName, updatedAvatar };
+    //   return updatedInfo;
+    // }
+
+    // updateProfile({ updatedInfo, token });
+    // currentUser.name = updatedInfo.updatedName;
+    // currentUser.avatar = updatedInfo.updatedAvatar;
+
+    updateProfile({ newData, token });
+    currentUser.name = newData.newName;
+    currentUser.avatar = newData.newAvatar;
+    closeActiveModal();
   };
 
   const handleCardClick = (card) => {
@@ -249,6 +293,7 @@ function App() {
                         handleCardClick={handleCardClick}
                         handleAddClick={handleAddClick}
                         clothingItems={clothingItems}
+                        setActiveModal={setActiveModal}
                       />
                     </ProtectedRoute>
                   }
@@ -284,6 +329,11 @@ function App() {
                 closeActiveModal={closeActiveModal}
                 handleLogin={handleLogin}
                 setActiveModal={setActiveModal}
+              />
+              <EditProfileModal
+                activeModal={activeModal}
+                closeActiveModal={closeActiveModal}
+                handleProfileChange={handleProfileChange}
               />
             </div>
             <Footer />

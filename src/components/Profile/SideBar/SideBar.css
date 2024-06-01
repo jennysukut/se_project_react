@@ -2,7 +2,14 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  width: 700px;
+  flex-direction: column;
+  /*width: 700px;*/
+}
+
+.sidebar__user-information {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .sidebar__avatar {
@@ -26,6 +33,18 @@
 .sidebar__user-name {
   margin: 0;
   font-size: 20px;
+}
+
+.sidebar__buttons {
+  margin-top: 24px;
+}
+
+.sidebar__button {
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 8px;
+  text-align: left;
 }
 
 @media screen and (max-width: 675px) {

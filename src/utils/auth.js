@@ -21,6 +21,20 @@ function signIn({ email, password }) {
   }).then(checkResponse);
 }
 
+function updateProfile({ newData, token }) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: newData.newName,
+      avatar: newData.newAvatar,
+    }),
+  }).then(checkResponse);
+}
+
 function checkToken(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
@@ -31,4 +45,4 @@ function checkToken(token) {
   }).then(checkResponse);
 }
 
-export { register, signIn, checkToken };
+export { register, signIn, checkToken, updateProfile };
