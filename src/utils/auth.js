@@ -21,7 +21,7 @@ function signIn({ email, password }) {
   }).then(checkResponse);
 }
 
-function checkToken({ token }) {
+function checkToken(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {

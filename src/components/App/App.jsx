@@ -36,9 +36,10 @@ function App() {
   const [clothingItems, setClothingItems] = useState([{}]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    name: "Jennifer Sukut",
-    email: "testy@gmail.com",
-    //avatar: `https://images.unsplash.com/photo-1605184861755-8f190fea96a5?q=80&w=1883&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+    _id: "",
+    name: "New User",
+    avatar: "",
+    email: "",
   }); //maybe update this to an object with the user's information to render on the profile
   const [token, setToken] = useState("");
 
@@ -81,16 +82,25 @@ function App() {
   const handleLogin = ({ email, password }) => {
     console.log(email);
     console.log(password);
+    if (!email || !password) {
+      return;
+    }
+
     signIn({ email, password })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-        setIsLoggedIn(true);
+        checkToken(res.token).then((res) => {
+          console.log(res);
+          setCurrentUser({
+            _id: res._id,
+            name: res.name,
+            avatar: res.avatar,
+            email: res.email,
+          });
+          setIsLoggedIn(true);
+        });
       })
       .then(closeActiveModal);
-
-    //check the server's response - do this in the App.js section?
-    //Store the token
-    //localStorage.setItem("jwt", res.token);
   };
 
   const handleCardClick = (card) => {
@@ -147,12 +157,18 @@ function App() {
   useEffect(() => {
     if (localStorage.jwt) {
       const token = localStorage.jwt;
-      checkToken({ token }).then(() => {
-        setToken(token);
+      checkToken(token).then((res) => {
+        console.log(res);
+        setCurrentUser({
+          _id: res._id,
+          name: res.name,
+          avatar: res.avatar,
+          email: res.email,
+        });
         setIsLoggedIn(true);
       });
     }
-  }, [currentUser]);
+  }, []);
 
   useEffect(() => {
     getWeather({ coordinates }, APIKey)
