@@ -121,6 +121,7 @@ function App() {
   };
 
   const handleAddItem = ({ item }) => {
+    const token = localStorage.jwt;
     addItem({ item, token })
       .then((res) => {
         setClothingItems([res, ...clothingItems]);
@@ -158,7 +159,6 @@ function App() {
     if (localStorage.jwt) {
       const token = localStorage.jwt;
       checkToken(token).then((res) => {
-        console.log(res);
         setCurrentUser({
           _id: res._id,
           name: res.name,
