@@ -1,8 +1,10 @@
 import "./ItemCard.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AppContext } from "../../contexts/AppContext";
 
 function ItemCard({ item, onCardClick, handleCardLike }) {
   const [isLiked, setIsLiked] = useState(false);
+  const { isLoggedIn } = useContext(AppContext);
 
   const handleCardClick = () => {
     onCardClick(item);
@@ -32,12 +34,16 @@ function ItemCard({ item, onCardClick, handleCardLike }) {
     <li className="itemCard__card">
       <div className="itemCard__title-and-like-button">
         <div className="itemCard__title">{item.name}</div>
-        <button
-          onClick={handleLikeClick}
-          className={`itemCard__like-button ${
-            isLiked ? "itemCard__like-button-liked" : ""
-          }`}
-        ></button>
+        {isLoggedIn ? (
+          <button
+            onClick={handleLikeClick}
+            className={`itemCard__like-button ${
+              isLiked ? "itemCard__like-button-liked" : ""
+            }`}
+          ></button>
+        ) : (
+          ""
+        )}
       </div>
       <img
         src={item.imageUrl}

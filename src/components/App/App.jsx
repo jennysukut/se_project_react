@@ -52,8 +52,7 @@ function App() {
     name: "New User",
     avatar: "",
     email: "",
-  }); //maybe update this to an object with the user's information to render on the profile
-  const [token, setToken] = useState("");
+  });
 
   //const [popupVersion, setPopupVersion] = useState("2");
 
@@ -135,8 +134,34 @@ function App() {
   const handleCardLike = (id, isLiked) => {
     console.log(id, isLiked);
     const token = localStorage.getItem("jwt");
+    const cards = clothingItems;
 
-    addCardLike(id, token);
+    !isLiked
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            console.log(updatedCard.item); // this is updated
+            setClothingItems((cards) =>
+              cards.map((card) => {
+                card._id === id ? updatedCard.item : card;
+              })
+            );
+            console.log(cards);
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        removeCardLike(id, token)
+          .then((updatedCard) => {
+            console.log(updatedCard);
+            // setClothingItems((cards) =>
+            //   cards.map((item) => (item._id === id ? updatedCard : item))
+            // );
+          })
+          .catch((err) => console.log(err));
+
+    // addCardLike(id, token); //--this works!
+
+    //removeCardLike(id, token); -- this works!
+
     // !isLiked
     //   ? addCardLike(id, token)
     //       .then((updatedCard) => {

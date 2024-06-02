@@ -42,7 +42,7 @@ function addCardLike(id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  });
+  }).then(checkResponse);
 }
 
 function removeCardLike(id, token) {
@@ -52,7 +52,7 @@ function removeCardLike(id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  });
+  })..then(checkResponse);
 }
 
 export { getItems, addItem, deleteItem, addCardLike, removeCardLike };
