@@ -52,7 +52,7 @@ function removeCardLike(id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  })..then(checkResponse);
+  }).then(checkResponse);
 }
 
 export { getItems, addItem, deleteItem, addCardLike, removeCardLike };
