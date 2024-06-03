@@ -59,7 +59,7 @@ function LoginModal({
         <label htmlFor="password" className="modal__input-title">
           Password*
           <input
-            type="text"
+            type="password"
             className="modal__input"
             placeholder="password"
             id="password"

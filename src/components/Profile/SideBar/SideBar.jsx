@@ -3,11 +3,16 @@ import avatar from "../../../images/Avatar.svg";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../../contexts/AppContext";
 
-function SideBar({ setActiveModal }) {
+function SideBar({ setActiveModal, setIsLoggedIn }) {
   const { currentUser } = useContext(CurrentUserContext);
 
   const handleChangeProfileClick = () => {
     setActiveModal("change-profile");
+  };
+
+  const handleLogOut = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
   };
 
   return (
@@ -33,7 +38,10 @@ function SideBar({ setActiveModal }) {
         >
           Change profile data
         </button>
-        <button className="sidebar__button sidebar__log-out-button">
+        <button
+          onClick={handleLogOut}
+          className="sidebar__button sidebar__log-out-button"
+        >
           Log out
         </button>
       </div>

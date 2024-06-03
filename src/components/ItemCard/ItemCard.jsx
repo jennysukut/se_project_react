@@ -1,22 +1,28 @@
 import "./ItemCard.css";
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../contexts/AppContext";
+import { CurrentUserContext } from "../../contexts/AppContext";
 
 function ItemCard({ item, onCardClick, handleCardLike }) {
-  const [isLiked, setIsLiked] = useState(false);
+  //const [isLiked, setIsLiked] = useState(false);
   const { isLoggedIn } = useContext(AppContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   const handleCardClick = () => {
     onCardClick(item);
   };
 
-  if ((item.likes.length = 0)) {
-    setIsLiked(false);
-  }
+  // console.log(item.likes);
+  // console.log(currentUser._id);
 
-  if (item.likes.length > 0) {
-    setIsLiked(true);
-  }
+  // const isLiked = item.likes.length > 0;
+  const likes = item.likes;
+  const isLiked = likes.find(function (likes) {
+    return likes == currentUser._id;
+  });
+
+  //you need to check if the current user has liked the card, not if anyone has liked the card;
+  //I'll leave that up to you to implement. Hint: You can use the Array class's .find method
 
   const handleLikeClick = () => {
     handleCardLike(item._id, isLiked);

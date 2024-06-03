@@ -49,7 +49,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     _id: "",
-    name: "New User",
+    name: "",
     avatar: "",
     email: "",
   });
@@ -69,20 +69,21 @@ function App() {
 
   const handleAddUser = ({ user }) => {
     console.log(`Adding this user: ${user.email} ${user.name}`);
-    register({ user })
-      .then(() => {
-        navigate("/profile");
-      })
-      .then(closeActiveModal)
-      .then(() => {
-        // setCurrentUser({
-        //   name: user.name,
-        //   email: user.email,
-        //   avatar: user.avatar,
-        // });
-        // console.log(currentUser);
+    register({ user }).then(() => {
+      const { email, password } = user;
+      signIn({ email, password }).then((res) => {
+        localStorage.setItem("jwt", res.token);
+        console.log(user);
+        setCurrentUser({
+          name: user.name,
+          email: user.email,
+          avatar: user.avatar,
+        });
         setIsLoggedIn(true);
+        navigate("/profile");
+        closeActiveModal();
       });
+    });
   };
 
   const handleLogInClick = () => {
@@ -132,52 +133,30 @@ function App() {
   };
 
   const handleCardLike = (id, isLiked) => {
-    console.log(id, isLiked);
     const token = localStorage.getItem("jwt");
     const cards = clothingItems;
 
     !isLiked
       ? addCardLike(id, token)
           .then((updatedCard) => {
-            console.log(updatedCard.item); // this is updated
             setClothingItems((cards) =>
               cards.map((card) => {
-                card._id === id ? updatedCard.item : card;
+                return card._id === id ? updatedCard.item : card;
               })
             );
             console.log(cards);
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        removeCardLike(id, token)
+      : removeCardLike(id, token)
           .then((updatedCard) => {
-            console.log(updatedCard);
-            // setClothingItems((cards) =>
-            //   cards.map((item) => (item._id === id ? updatedCard : item))
-            // );
+            console.log(updatedCard.item);
+            setClothingItems((cards) =>
+              cards.map((card) => {
+                return card._id === id ? updatedCard.item : card;
+              })
+            );
           })
           .catch((err) => console.log(err));
-
-    // addCardLike(id, token); //--this works!
-
-    //removeCardLike(id, token); -- this works!
-
-    // !isLiked
-    //   ? addCardLike(id, token)
-    //       .then((updatedCard) => {
-    //         setClothingItems((cards) =>
-    //           cards.map((item) => (item._id === id ? updatedCard : item))
-    //         );
-    //       })
-    //       .catch((err) => console.log(err))
-    //   : // if not, send a request to remove the user's id from the card's likes array
-    //     removeCardLike(id, token)
-    //       .then((updatedCard) => {
-    //         setClothingItems((cards) =>
-    //           cards.map((item) => (item._id === id ? updatedCard : item))
-    //         );
-    //       })
-    //       .catch((err) => console.log(err));
   };
 
   const handleMobileMenuClick = () => {
@@ -321,6 +300,7 @@ function App() {
                         clothingItems={clothingItems}
                         setActiveModal={setActiveModal}
                         handleCardLike={handleCardLike}
+                        setIsLoggedIn={setIsLoggedIn}
                       />
                     </ProtectedRoute>
                   }

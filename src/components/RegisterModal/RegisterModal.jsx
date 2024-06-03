@@ -79,7 +79,7 @@ function RegisterModal({
         <label htmlFor="password" className="modal__input-title">
           Password*
           <input
-            type="text"
+            type="password"
             className="modal__input"
             placeholder="Password"
             id="password"

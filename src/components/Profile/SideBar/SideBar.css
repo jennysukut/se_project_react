@@ -1,9 +1,8 @@
 .sidebar__user-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   flex-direction: column;
-  /*width: 700px;*/
 }
 
 .sidebar__user-information {
@@ -11,7 +10,7 @@
   align-items: center;
   gap: 16px;
   justify-content: flex-start;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .sidebar__avatar {
@@ -39,6 +38,8 @@
 
 .sidebar__buttons {
   margin-top: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar__button {

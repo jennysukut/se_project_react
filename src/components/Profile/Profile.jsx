@@ -9,10 +9,11 @@ function Profile({
   clothingItems,
   setActiveModal,
   handleCardLike,
+  setIsLoggedIn,
 }) {
   return (
     <div className="profile">
-      <SideBar setActiveModal={setActiveModal} />
+      <SideBar setActiveModal={setActiveModal} setIsLoggedIn={setIsLoggedIn} />
       <ClothesSection
         handleAddClick={handleAddClick}
         handleCardClick={handleCardClick}
