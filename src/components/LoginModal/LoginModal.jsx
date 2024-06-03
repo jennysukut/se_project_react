@@ -1,3 +1,4 @@
+import "./LoginModal.css";
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -20,12 +21,10 @@ function LoginModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("login submit clicked");
     handleLogin({ email, password });
   };
 
   const handleOrRegister = () => {
-    console.log("Handling or register option button");
     setActiveModal("register");
   };
 

@@ -11,7 +11,6 @@ function AddItemModal({
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
-  // const [checked, setChecked] = useState(null);
 
   const handleNameChange = (e) => {
     setName(e.target.value);

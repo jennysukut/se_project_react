@@ -19,7 +19,7 @@ function WeatherCard({ weatherData, weatherCardBackground }) {
           ? weatherData.temp.F
           : weatherData.temp.C}
       </p>{" "}
-      //adjust this to reflect the context console.log({currentTemperatureUnit}
+      ({currentTemperatureUnit}
       );
     </div>
   );

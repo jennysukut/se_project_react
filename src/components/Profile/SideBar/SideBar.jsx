@@ -1,10 +1,10 @@
 import "./SideBar.css";
-import avatar from "../../../images/Avatar.svg";
+
 import { useContext } from "react";
 import { CurrentUserContext } from "../../../contexts/AppContext";
 
 function SideBar({ setActiveModal, setIsLoggedIn }) {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   const handleChangeProfileClick = () => {
     setActiveModal("change-profile");
@@ -13,6 +13,7 @@ function SideBar({ setActiveModal, setIsLoggedIn }) {
   const handleLogOut = () => {
     localStorage.clear();
     setIsLoggedIn(false);
+    setCurrentUser({});
   };
 
   return (

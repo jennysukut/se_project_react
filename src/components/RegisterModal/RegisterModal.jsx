@@ -31,15 +31,11 @@ function RegisterModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit clicked");
     const user = { email, password, name, avatar };
     handleAddUser({ user });
-    //close the modal
-    //sign the user in
   };
 
   const handleOrLogin = () => {
-    console.log("handling or login button");
     setActiveModal("log-in");
   };
 

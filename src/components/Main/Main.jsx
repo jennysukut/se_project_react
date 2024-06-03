@@ -1,9 +1,11 @@
-import WeatherCard from "../WeatherCard/WeatherCard";
-import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
-import randomizeButton from "../../images/RandomizeButton.svg";
+
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { useContext } from "react";
+
+import WeatherCard from "../WeatherCard/WeatherCard";
+import ItemCard from "../ItemCard/ItemCard";
+import randomizeButton from "../../images/RandomizeButton.svg";
 
 function Main({
   weatherData,

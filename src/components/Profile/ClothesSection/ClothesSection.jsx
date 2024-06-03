@@ -11,8 +11,6 @@ function ClothesSection({
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  //const isOwn = card.owner === currentUser._id;
-
   return (
     <div className="clothesSection">
       <div className="clothesSection__title-and-button">

@@ -9,10 +9,6 @@ function ItemModal({
   popupVersion,
   handleDeletePress,
 }) {
-  const handleDeleteButton = () => {
-    handleDeletePress(card._id);
-  };
-
   const { currentUser } = useContext(CurrentUserContext);
 
   const isOwn = card.owner === currentUser._id;
@@ -20,6 +16,10 @@ function ItemModal({
   const itemDeleteButtonClassName = `item__delete-button ${
     isOwn ? "itemModal__deleteButton" : "itemModal__deleteButton_hidden"
   }`;
+
+  const handleDeleteButton = () => {
+    handleDeletePress(card._id);
+  };
 
   /*if (popupVersion == "2") {
     return (

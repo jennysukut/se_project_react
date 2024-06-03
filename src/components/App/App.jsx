@@ -1,20 +1,29 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
+//import stylesheets
 import "./App.css";
+
+//import components
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile";
+import AddItemModal from "../AddItemModal/AddItemModal";
+import LoginModal from "../LoginModal/LoginModal";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
+import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes.jsx";
+
+//import utils & apis
 import { coordinates, APIKey } from "../../utils/constants";
 import {
   getWeather,
   filterWeatherData,
   filterWeatherCardBackground,
 } from "../../utils/weatherApi";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import Profile from "../Profile/Profile";
-import AddItemModal from "../AddItemModal/AddItemModal";
 import {
   getItems,
   addItem,
@@ -22,20 +31,19 @@ import {
   addCardLike,
   removeCardLike,
 } from "../../utils/api";
-import ConfirmModal from "../ConfirmModal/ConfirmModal";
-import RegisterModal from "../RegisterModal/RegisterModal";
-import { AppContext, CurrentUserContext } from "../../contexts/AppContext";
-import LoginModal from "../LoginModal/LoginModal";
 import {
   register,
   signIn,
   checkToken,
   updateProfile,
 } from "../../utils/auth.js";
-import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes.jsx";
-import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
+
+//import contexts
+import { AppContext, CurrentUserContext } from "../../contexts/AppContext";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
+  //set states
   const [weatherData, setWeatherData] = useState({
     type: "hot",
     temp: { F: 999, C: 999 },
@@ -53,7 +61,6 @@ function App() {
     avatar: "",
     email: "",
   });
-
   //const [popupVersion, setPopupVersion] = useState("2");
 
   //const choosePopupVersion = () => {
@@ -62,6 +69,7 @@ function App() {
 
   const navigate = useNavigate();
 
+  //functions for users
   const handleSignUpClick = () => {
     setActiveModal("register");
     console.log("sign up modal active");
@@ -123,13 +131,23 @@ function App() {
     closeActiveModal();
   };
 
+  //functions for items
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
   };
 
-  const handleAddClick = () => {
-    setActiveModal("add-garment");
+  const handleAddItem = ({ item }) => {
+    const token = localStorage.jwt;
+    addItem({ item, token })
+      .then((res) => {
+        setClothingItems([res, ...clothingItems]);
+      })
+      .then(closeActiveModal)
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleCardLike = (id, isLiked) => {
@@ -159,30 +177,6 @@ function App() {
           .catch((err) => console.log(err));
   };
 
-  const handleMobileMenuClick = () => {
-    setActiveModal("mobile-menu");
-  };
-
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
-
-  const handleAddItem = ({ item }) => {
-    const token = localStorage.jwt;
-    addItem({ item, token })
-      .then((res) => {
-        setClothingItems([res, ...clothingItems]);
-      })
-      .then(closeActiveModal)
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleDeletePress = () => {
-    setActiveModal("confirm");
-  };
-
   const handleItemDelete = () => {
     const token = localStorage.jwt;
     deleteItem(selectedCard._id, { token })
@@ -198,11 +192,31 @@ function App() {
       });
   };
 
+  //functions for opening & submitting modals
+  const handleMobileMenuClick = () => {
+    setActiveModal("mobile-menu");
+  };
+
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+
+  const handleAddClick = () => {
+    setActiveModal("add-garment");
+  };
+
+  const handleDeletePress = () => {
+    setActiveModal("confirm");
+  };
+
+  //other functions
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === `C`) setCurrentTemperatureUnit(`F`);
     if (currentTemperatureUnit === `F`) setCurrentTemperatureUnit(`C`);
   };
 
+  //useEffect functions
   useEffect(() => {
     if (localStorage.jwt) {
       const token = localStorage.jwt;
@@ -260,7 +274,7 @@ function App() {
   }, [activeModal]);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser }}>
+    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="page">
         <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
           <CurrentTemperatureUnitContext.Provider

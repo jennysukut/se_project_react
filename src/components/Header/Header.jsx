@@ -1,13 +1,15 @@
 import "./Header.css";
+
+import { Link } from "react-router-dom";
+import { AppContext } from "../../contexts/AppContext";
+import { CurrentUserContext } from "../../contexts/AppContext";
+import { useContext } from "react";
+
 import logo from "../../images/Logo.svg";
 import avatar from "../../images/Avatar.svg";
 import mobileMenu from "../../images/MobileMenuButton.svg";
 import MobileMenuModal from "../MobileMenuModal/MobileMenu";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { Link } from "react-router-dom";
-import { AppContext } from "../../contexts/AppContext";
-import { CurrentUserContext } from "../../contexts/AppContext";
-import { useContext } from "react";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -24,7 +26,6 @@ function Header({
   handleLogInClick,
 }) {
   const { isLoggedIn } = useContext(AppContext);
-
   const { currentUser } = useContext(CurrentUserContext);
 
   return (

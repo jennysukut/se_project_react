@@ -1,5 +1,6 @@
 import "./Profile.css";
 import { useEffect } from "react";
+
 import ClothesSection from "./ClothesSection/ClothesSection";
 import SideBar from "./SideBar/SideBar";
 
