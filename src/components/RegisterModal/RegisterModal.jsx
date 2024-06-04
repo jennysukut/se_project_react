@@ -8,6 +8,8 @@ function RegisterModal({
   handleAddUser,
   currentUser,
   setActiveModal,
+  isLoading,
+  setIsLoading,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,6 +34,7 @@ function RegisterModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const user = { email, password, name, avatar };
     handleAddUser({ user });
   };
@@ -51,7 +54,7 @@ function RegisterModal({
     <ModalWithForm
       closeActiveModal={closeActiveModal}
       isOpen={activeModal === "register"}
-      buttonText="Next"
+      buttonText={isLoading ? "..." : "Next"}
       title="Sign Up"
       onSubmit={handleSubmit}
       altButton={true}

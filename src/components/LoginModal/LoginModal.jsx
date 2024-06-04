@@ -7,6 +7,8 @@ function LoginModal({
   closeActiveModal,
   handleLogin,
   setActiveModal,
+  isLoading,
+  setIsLoading,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +23,8 @@ function LoginModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin({ email, password });
+    setIsLoading(true);
+    handleLogin({ email, password }, setEmail, setPassword);
   };
 
   const handleOrRegister = () => {
@@ -32,7 +35,7 @@ function LoginModal({
     <ModalWithForm
       closeActiveModal={closeActiveModal}
       isOpen={activeModal === "log-in"}
-      buttonText="Next"
+      buttonText={isLoading ? "..." : "Next"}
       title="Log In"
       onSubmit={handleSubmit}
       logIn={true}

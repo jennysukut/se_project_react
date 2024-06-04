@@ -7,6 +7,8 @@ function AddItemModal({
   handleAddItem,
   closeActiveModal,
   clothingItems,
+  isLoading,
+  setIsLoading,
 }) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -26,6 +28,7 @@ function AddItemModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const item = { name, imageUrl, weather };
     handleAddItem({ item });
   };
@@ -40,7 +43,7 @@ function AddItemModal({
     <ModalWithForm
       closeActiveModal={closeActiveModal}
       isOpen={activeModal === "add-garment"}
-      buttonText="Add garment"
+      buttonText={isLoading ? "Adding..." : "Add garment"}
       title="New garment"
       onSubmit={handleSubmit}
     >

@@ -8,12 +8,16 @@ function EditProfileModal({
   activeModal,
   closeActiveModal,
   handleProfileChange,
+  isLoading,
+  setIsLoading,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
   const { name, avatar } = currentUser;
 
   const [newName, setNewName] = useState("");
   const [newAvatar, setNewAvatar] = useState("");
+
+  const isOpen = activeModal === "change-profile";
 
   const handleName = (e) => {
     setNewName(e.target.value);
@@ -25,6 +29,7 @@ function EditProfileModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const newData = { newName, newAvatar };
     handleProfileChange(newData);
   };
@@ -32,13 +37,13 @@ function EditProfileModal({
   useEffect(() => {
     setNewName(name);
     setNewAvatar(avatar);
-  }, [activeModal]);
+  }, [isOpen]);
 
   return (
     <ModalWithForm
       closeActiveModal={closeActiveModal}
       isOpen={activeModal === "change-profile"}
-      buttonText="Next"
+      buttonText={isLoading ? "..." : "Next"}
       title="Change profile data"
       onSubmit={handleSubmit}
       logIn={true}

@@ -55,6 +55,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState(`F`);
   const [clothingItems, setClothingItems] = useState([{}]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     _id: "",
     name: "",
@@ -77,21 +78,32 @@ function App() {
 
   const handleAddUser = ({ user }) => {
     console.log(`Adding this user: ${user.email} ${user.name}`);
-    register({ user }).then(() => {
-      const { email, password } = user;
-      signIn({ email, password }).then((res) => {
-        localStorage.setItem("jwt", res.token);
-        console.log(user);
-        setCurrentUser({
-          name: user.name,
-          email: user.email,
-          avatar: user.avatar,
-        });
-        setIsLoggedIn(true);
-        navigate("/profile");
-        closeActiveModal();
+    register({ user })
+      .then(() => {
+        const { email, password } = user;
+        signIn({ email, password })
+          .then((res) => {
+            localStorage.setItem("jwt", res.token);
+            console.log(user);
+            setCurrentUser({
+              name: user.name,
+              email: user.email,
+              avatar: user.avatar,
+            });
+            setIsLoggedIn(true);
+            navigate("/profile");
+            closeActiveModal();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    });
   };
 
   const handleLogInClick = () => {
@@ -99,7 +111,7 @@ function App() {
     console.log("log in modal active");
   };
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ email, password }, setEmail, setPassword) => {
     console.log(email);
     console.log(password);
     if (!email || !password) {
@@ -109,26 +121,50 @@ function App() {
     signIn({ email, password })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-        checkToken(res.token).then((res) => {
-          console.log(res);
-          setCurrentUser({
-            _id: res._id,
-            name: res.name,
-            avatar: res.avatar,
-            email: res.email,
+        checkToken(res.token)
+          .then((res) => {
+            console.log(res);
+            setCurrentUser({
+              _id: res._id,
+              name: res.name,
+              avatar: res.avatar,
+              email: res.email,
+            });
+            setIsLoggedIn(true);
+            setEmail("");
+            setPassword("");
+          })
+          .catch((err) => {
+            console.log(err);
           });
-          setIsLoggedIn(true);
-        });
       })
-      .then(closeActiveModal);
+      .then(closeActiveModal)
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleProfileChange = (newData) => {
     const token = localStorage.jwt;
-    updateProfile({ newData, token });
-    currentUser.name = newData.newName;
-    currentUser.avatar = newData.newAvatar;
-    closeActiveModal();
+    updateProfile({ newData, token })
+      .then(() => {
+        setCurrentUser({
+          _id: currentUser._id,
+          name: newData.newName,
+          avatar: newData.newAvatar,
+          email: currentUser.email,
+        });
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   //functions for items
@@ -147,6 +183,9 @@ function App() {
       .then(closeActiveModal)
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -189,6 +228,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -220,15 +262,19 @@ function App() {
   useEffect(() => {
     if (localStorage.jwt) {
       const token = localStorage.jwt;
-      checkToken(token).then((res) => {
-        setCurrentUser({
-          _id: res._id,
-          name: res.name,
-          avatar: res.avatar,
-          email: res.email,
+      checkToken(token)
+        .then((res) => {
+          setCurrentUser({
+            _id: res._id,
+            name: res.name,
+            avatar: res.avatar,
+            email: res.email,
+          });
+          setIsLoggedIn(true);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        setIsLoggedIn(true);
-      });
     }
   }, []);
 
@@ -325,6 +371,8 @@ function App() {
                 handleAddItem={handleAddItem}
                 closeActiveModal={closeActiveModal}
                 clothingItems={clothingItems}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
               <ItemModal
                 activeModal={activeModal}
@@ -337,24 +385,31 @@ function App() {
                 activeModal={activeModal}
                 closeActiveModal={closeActiveModal}
                 handleItemDelete={handleItemDelete}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
               <RegisterModal
                 activeModal={activeModal}
                 closeActiveModal={closeActiveModal}
                 handleAddUser={handleAddUser}
-                currentUser={currentUser}
                 setActiveModal={setActiveModal}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
               <LoginModal
                 activeModal={activeModal}
                 closeActiveModal={closeActiveModal}
                 handleLogin={handleLogin}
                 setActiveModal={setActiveModal}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
               <EditProfileModal
                 activeModal={activeModal}
                 closeActiveModal={closeActiveModal}
                 handleProfileChange={handleProfileChange}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
             </div>
             <Footer />

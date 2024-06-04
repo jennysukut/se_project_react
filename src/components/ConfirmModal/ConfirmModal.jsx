@@ -1,7 +1,14 @@
 import "./ConfirmModal.css";
 
-function ConfirmModal({ closeActiveModal, activeModal, handleItemDelete }) {
+function ConfirmModal({
+  closeActiveModal,
+  activeModal,
+  handleItemDelete,
+  isLoading,
+  setIsLoading,
+}) {
   const handleDeleteConfirmation = () => {
+    setIsLoading(true);
     handleItemDelete();
   };
 
@@ -26,7 +33,7 @@ function ConfirmModal({ closeActiveModal, activeModal, handleItemDelete }) {
           className="confirmModal__confirmButton"
           onClick={handleDeleteConfirmation}
         >
-          Yes, delete item
+          {isLoading ? "Deleting..." : "Yes, delete item"}
         </button>
         <button
           type="button"
