@@ -45,13 +45,13 @@ function AddItemModal({
       onSubmit={handleSubmit}
     >
       <fieldset className="modal__fieldset">
-        <label htmlFor="name" className="modal__input-title">
+        <label htmlFor="itemName" className="modal__input-title">
           Name
           <input
             type="text"
             className="modal__input"
             placeholder="name"
-            id="name"
+            id="itemName"
             value={name}
             onChange={handleNameChange}
           />

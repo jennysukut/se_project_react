@@ -41,13 +41,13 @@ function LoginModal({
       handleAltButton={handleOrRegister}
     >
       <fieldset className="modal__fieldset">
-        <label htmlFor="email" className="modal__input-title">
+        <label htmlFor="loginEmail" className="modal__input-title">
           Email*
           <input
             type="text"
             className="modal__input"
             placeholder="email"
-            id="email"
+            id="loginEmail"
             value={email}
             onChange={handleEmail}
           />
@@ -55,13 +55,13 @@ function LoginModal({
         </label>
       </fieldset>
       <fieldset className="modal__fieldset">
-        <label htmlFor="password" className="modal__input-title">
+        <label htmlFor="loginPassword" className="modal__input-title">
           Password*
           <input
             type="password"
             className="modal__input"
             placeholder="password"
-            id="password"
+            id="loginPassword"
             value={password}
             onChange={handlePassword}
           />

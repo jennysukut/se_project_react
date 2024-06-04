@@ -86,13 +86,13 @@ function RegisterModal({
         </label>
       </fieldset>
       <fieldset className="modal__fieldset">
-        <label htmlFor="name" className="modal__input-title">
+        <label htmlFor="registerNname" className="modal__input-title">
           Name
           <input
             type="text"
             className="modal__input"
             placeholder="Name"
-            id="name"
+            id="registerName"
             value={name}
             onChange={handleName}
           />
