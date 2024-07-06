@@ -9,6 +9,8 @@ The idea of the application is pretty simple - we make a call to an API, which t
 <img src="./src/images/WtwrProjectScreenshot.png" />
 ## Links
 
+- [Deployed Site](https://whattowear.ignorelist.com/)
+
 - [Figma Design](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
 
 - [Express Github Repo](https://github.com/jennysukut/se_project_express)
